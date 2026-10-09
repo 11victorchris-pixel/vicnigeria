@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VicBirth Nigeria — Online Birth Recording System. Academic demonstration showing how digitisation can improve access, organisation and retrieval of birth records." />
+  <title>VicBirth Nigeria — Online Birth Recording System (Demo)</title>
+
+  <!-- Bootstrap 5 via official CDN (only framework allowed) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+  <!-- Project design system -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Thin academic-notice strip -->
+  <div class="bcn-topstrip">
+    <div class="container">
+      <p>Academic demonstration portal &middot; Fictional data only &middot; Records stay in this browser (localStorage)</p>
+    </div>
+  </div>
+
+  <!-- ============ Navigation ============ -->
+  <nav class="navbar navbar-expand-lg bcn-navbar sticky-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="bcn-logo" href="index.html" aria-label="VicBirth Nigeria home">
+        <span class="bcn-logo-mark" aria-hidden="true">
+          <!-- Inline SVG: shield + birth record motif -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true">
+            <path d="M12 2.5 20 5.5v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6l8-3Z" fill="#ffffff" opacity="0.95"/>
+            <path d="M12 4.2 18.4 6.4v5.1c0 4-2.7 7-6.4 8.2-3.7-1.2-6.4-4.2-6.4-8.2V6.4L12 4.2Z" fill="#0c4f2e"/>
+            <path d="M8.6 12.2l2.3 2.3 4.5-4.6" stroke="#C9A227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </span>
+        <span class="bcn-logo-text">
+          <strong>VicBirth Nigeria</strong>
+          <small>Online Birth Recording System</small>
+        </span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bcnNav"
+        aria-controls="bcnNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="bcnNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html">Register a Birth</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="records.html">Records</a>
+          </li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <a class="btn btn-primary" href="register.html">Register a Birth</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ============ Hero ============ -->
+    <section class="bcn-hero">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <span class="bcn-eyebrow"><span class="dot" aria-hidden="true"></span> Digital Birth Recording, Made Simpler.</span>
+            <h1>Making birth registration simpler and more accessible.</h1>
+            <p class="lead">
+              VicBirth Nigeria demonstrates how an online birth recording system can improve
+              access, organisation, retrieval, and management of birth registration records &mdash;
+              reducing dependence on paper files.
+            </p>
+            <div class="bcn-hero-actions">
+              <a class="btn btn-primary btn-lg" href="register.html">Register a Birth</a>
+              <a class="btn btn-outline-secondary btn-lg" href="records.html">View Records</a>
+            </div>
+            <p class="bcn-hero-note">
+              An independent academic demonstration. It does <strong>not</strong> provide official legal
+              registration, verified identity, or connection to any government service.
+            </p>
+          </div>
+
+          <div class="col-lg-6">
+            <!-- CSS/SVG illustration: no external image, never breaks -->
+            <div class="bcn-illustration" role="img" aria-label="Illustration of a digital birth record card with a demo registration ID">
+              <div class="bcn-illustration-header">
+                <strong>Digital Birth Record</strong>
+                <span>DEMO</span>
+              </div>
+              <div class="bcn-illustration-body">
+                <dl class="m-0">
+                  <div class="bcn-mini-row">
+                    <dt>Registration ID</dt>
+                    <dd><span class="bcn-id-pill">VBN-2026-DEMO-ID</span></dd>
+                  </div>
+                  <div class="bcn-mini-row">
+                    <dt>Child&rsquo;s name</dt>
+                    <dd>Fictional record</dd>
+                  </div>
+                  <div class="bcn-mini-row">
+                    <dt>Date of birth</dt>
+                    <dd>Stored &amp; searchable</dd>
+                  </div>
+                  <div class="bcn-mini-row">
+                    <dt>State / LGA</dt>
+                    <dd>Organised by location</dd>
+                  </div>
+                  <div class="bcn-mini-row">
+                    <dt>Date registered</dt>
+                    <dd>Saved on this device</dd>
+                  </div>
+                </dl>
+              </div>
+              <div class="bcn-illustration-footer">
+                <span class="bcn-check" aria-hidden="true">&#10003;</span>
+                <span>Validated, saved to this browser, and retrievable on the Records dashboard.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Benefits ============ -->
+    <section class="bcn-section" aria-labelledby="benefits-title">
+      <div class="container">
+        <h2 class="bcn-section-title" id="benefits-title">Why digitise birth registration?</h2>
+        <p class="bcn-section-sub">
+          Five practical benefits this prototype demonstrates. Each one is about better record-keeping &mdash;
+          not about replacing official government processes.
+        </p>
+
+        <div class="row g-3 mt-3">
+          <div class="col-md-6 col-lg-4">
+            <div class="card bcn-card">
+              <div class="card-body">
+                <span class="bcn-icon-tile" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#0c4f2e" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="#0c4f2e" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <h3>Easier access</h3>
+                <p>Registration information is available through a clear portal instead of travelling to search a paper file.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card bcn-card">
+              <div class="card-body">
+                <span class="bcn-icon-tile" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#0c4f2e" stroke-width="2" stroke-linecap="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="#0c4f2e" stroke-width="2"/></svg>
+                </span>
+                <h3>Better organisation</h3>
+                <p>Every record uses the same fields &mdash; name, date of birth, state, guardian &mdash; so files stay consistent.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card bcn-card">
+              <div class="card-body">
+                <span class="bcn-icon-tile" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 3 4 14h6l-1 7 9-11h-6l1-7Z" stroke="#0c4f2e" stroke-width="2" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>Faster search &amp; retrieval</h3>
+                <p>Find a record instantly by child&rsquo;s name or registration ID instead of paging through registers.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card bcn-card">
+              <div class="card-body">
+                <span class="bcn-icon-tile gold" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6V3Z" stroke="#8a6508" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h7M9 16h7" stroke="#8a6508" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <h3>Less paper dependence</h3>
+                <p>Digital copies reduce the risk of lost, damaged, or duplicated paper records.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card bcn-card">
+              <div class="card-body">
+                <span class="bcn-icon-tile gold" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3" stroke="#8a6508" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                <h3>Planning potential</h3>
+                <p>Organised, countable records could one day help plan schools, clinics, and public services.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card bcn-card">
+              <div class="card-body">
+                <span class="bcn-icon-tile" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v6c0 4.4-3 7.6-8 9-5-1.4-8-4.6-8-9V6l8-3Z" stroke="#0c4f2e" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#0c4f2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <h3>Honest scope</h3>
+                <p>This demo stores fictional records in your browser only. It issues demo IDs &mdash; never official certificate numbers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ How it works ============ -->
+    <section class="bcn-section bcn-section-soft" aria-labelledby="how-title">
+      <div class="container">
+        <h2 class="bcn-section-title" id="how-title">How it works</h2>
+        <p class="bcn-section-sub">Three steps, from entering information to managing the record on the dashboard.</p>
+
+        <div class="row g-3 mt-3">
+          <div class="col-md-4">
+            <div class="bcn-step">
+              <span class="bcn-step-number" aria-hidden="true">1</span>
+              <h3>Enter birth &amp; parent information</h3>
+              <p>Fill the guided registration form: child details first, then parent or guardian details.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bcn-step">
+              <span class="bcn-step-number" aria-hidden="true">2</span>
+              <h3>Validate &amp; save the demo registration</h3>
+              <p>The form checks dates, phone and email formats, then saves the record with a unique demo ID.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bcn-step">
+              <span class="bcn-step-number" aria-hidden="true">3</span>
+              <h3>Search &amp; manage on the dashboard</h3>
+              <p>Find records by name or ID, filter by state or sex, view details, export CSV, or print a summary.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 d-flex flex-wrap gap-2">
+          <a class="btn btn-primary" href="register.html">Start a registration</a>
+          <a class="btn btn-outline-secondary" href="records.html">Open the dashboard</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Impact statistics (live from localStorage) ============ -->
+    <section class="bcn-section bcn-stats" aria-labelledby="stats-title">
+      <div class="container">
+        <h2 class="bcn-section-title" id="stats-title">Live demo activity on this device</h2>
+        <p class="bcn-section-sub">Calculated right now from the fictional records stored in this browser &mdash; add or delete records and watch these numbers change.</p>
+
+        <div class="row g-3 mt-3" role="list">
+          <div class="col-6 col-lg-3" role="listitem">
+            <div class="bcn-stat-card">
+              <div class="number" id="stat-total">0</div>
+              <div class="label">Total demo registrations</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" role="listitem">
+            <div class="bcn-stat-card">
+              <div class="number" id="stat-today">0</div>
+              <div class="label">Registered today (local date)</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" role="listitem">
+            <div class="bcn-stat-card">
+              <div class="number" id="stat-male">0</div>
+              <div class="label">Male records</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" role="listitem">
+            <div class="bcn-stat-card">
+              <div class="number" id="stat-female">0</div>
+              <div class="label">Female records</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="bcn-demo-note mb-0">
+          Illustrative demonstration data only. These figures come from fictional sample records on this device
+          (<span id="stat-states">0</span> states represented) &mdash; they are <strong>not</strong> real Nigerian government statistics.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ Call to action ============ -->
+    <section class="bcn-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="bcn-cta">
+          <div class="row align-items-center g-3">
+            <div class="col-lg-8">
+              <h2 class="bcn-section-title mb-1" id="cta-title">Try the full demonstration flow</h2>
+              <p class="bcn-section-sub mb-0">Register a fictional birth, then find it on the dashboard. Everything stays in this browser.</p>
+            </div>
+            <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
+              <a class="btn btn-primary" href="register.html">Register a Birth</a>
+              <a class="btn btn-outline-secondary" href="records.html">View Records</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="bcn-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-5">
+          <h2>VicBirth Nigeria</h2>
+          <p class="mb-1"><em>Online Birth Recording System &mdash; Digital Birth Recording, Made Simpler.</em></p>
+          <p>An independent academic prototype showing how an online birth recording system can improve accessibility, organisation, retrieval, and management of birth registration records.</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3>Navigate</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html">Register a Birth</a></li>
+            <li><a href="records.html">Records Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-4">
+          <h3>About this demo</h3>
+          <ul>
+            <li>Built with HTML5, CSS3, vanilla JavaScript &amp; Bootstrap 5</li>
+            <li>Data stored only in browser localStorage</li>
+            <li>Use fictional records &mdash; never real personal data</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bcn-disclaimer mt-3" role="note">
+        <strong>Please note:</strong> VicBirth Nigeria is an independent academic demonstration project.
+        It is not an official government registration platform. Records and registration IDs generated here
+        are for demonstration purposes only.
+      </div>
+
+      <div class="bcn-footer-bottom">
+        <span>&copy; 2026 VicBirth Nigeria &mdash; Online Birth Recording System (academic demo).</span>
+        <span>All sample records are fictional.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS bundle (for responsive navbar) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!-- Shared storage + home statistics -->
+  <script src="js/main.js"></script>
+</body>
+</html>

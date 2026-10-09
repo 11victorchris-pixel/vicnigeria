@@ -1,0 +1,896 @@
+/* ============================================================
+   VicBirth Nigeria — shared design system
+   Plain CSS + Bootstrap 5. Colours: deep government green,
+   neutral light grey, restrained gold accent.
+   Organised so a student can explain each section.
+   ============================================================ */
+
+/* ---------- 1. Design tokens (colours, spacing) ---------- */
+:root {
+  --bcn-green-900: #0a3d24;   /* darkest green: footer, stat band */
+  --bcn-green-800: #0c4f2e;   /* primary brand green */
+  --bcn-green-700: #0e6639;   /* hover green */
+  --bcn-green-100: #e3efe7;   /* pale green tint for badges */
+  --bcn-gold: #b98a12;        /* restrained gold accent */
+  --bcn-gold-soft: #f6ecd0;   /* pale gold tint */
+  --bcn-bg: #ffffff;          /* page background */
+  --bcn-bg-soft: #f3f5f4;     /* light neutral section bg */
+  --bcn-ink: #1c2b23;         /* main text */
+  --bcn-muted: #5d6f64;       /* secondary text */
+  --bcn-border: #dde5df;      /* subtle borders */
+  --bcn-radius: 10px;         /* restrained corner radius */
+  --bcn-shadow: 0 2px 10px rgba(10, 61, 36, 0.08);
+  --bcn-shadow-lg: 0 10px 30px rgba(10, 61, 36, 0.12);
+}
+
+/* ---------- 2. Base typography & page ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--bcn-ink);
+  background: var(--bcn-bg);
+  line-height: 1.6;
+  overflow-x: hidden; /* guard against horizontal overflow */
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* Visible, consistent keyboard focus (accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--bcn-gold);
+  outline-offset: 2px;
+}
+
+/* ---------- 3. Top utility strip ---------- */
+.bcn-topstrip {
+  background: var(--bcn-green-900);
+  color: #dfe9e2;
+  font-size: 0.8rem;
+}
+
+.bcn-topstrip p {
+  margin: 0;
+  padding: 0.4rem 0;
+}
+
+/* ---------- 4. Navigation ---------- */
+.bcn-navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--bcn-border);
+}
+
+.bcn-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.bcn-logo-mark {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 9px;
+  background: var(--bcn-green-800);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bcn-logo-text {
+  line-height: 1.15;
+}
+
+.bcn-logo-text strong {
+  display: block;
+  color: var(--bcn-green-900);
+  font-size: 1.02rem;
+}
+
+.bcn-logo-text small {
+  color: var(--bcn-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bcn-navbar .nav-link {
+  color: var(--bcn-ink);
+  font-weight: 500;
+  padding: 0.55rem 0.85rem;
+  border-radius: 8px;
+}
+
+.bcn-navbar .nav-link:hover {
+  background: var(--bcn-bg-soft);
+  color: var(--bcn-green-800);
+}
+
+.bcn-navbar .nav-link.active {
+  color: var(--bcn-green-800);
+  background: var(--bcn-green-100);
+}
+
+/* ---------- 5. Buttons (Bootstrap overrides) ---------- */
+.btn-primary {
+  --bs-btn-bg: var(--bcn-green-800);
+  --bs-btn-border-color: var(--bcn-green-800);
+  --bs-btn-hover-bg: var(--bcn-green-700);
+  --bs-btn-hover-border-color: var(--bcn-green-700);
+  --bs-btn-active-bg: var(--bcn-green-900);
+  --bs-btn-active-border-color: var(--bcn-green-900);
+  font-weight: 600;
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: var(--bcn-green-800);
+  --bs-btn-border-color: var(--bcn-green-800);
+  --bs-btn-hover-bg: var(--bcn-green-800);
+  --bs-btn-hover-border-color: var(--bcn-green-800);
+  font-weight: 600;
+}
+
+.btn-gold {
+  background: var(--bcn-gold);
+  border-color: var(--bcn-gold);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-gold:hover,
+.btn-gold:focus {
+  background: #a1760e;
+  border-color: #a1760e;
+  color: #fff;
+}
+
+/* ---------- 6. Hero ---------- */
+.bcn-hero {
+  background: linear-gradient(180deg, #f7faf8 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--bcn-border);
+  padding: 3.2rem 0 3rem;
+}
+
+.bcn-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--bcn-green-100);
+  color: var(--bcn-green-900);
+  border: 1px solid #c6dccf;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+}
+
+.bcn-eyebrow .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bcn-gold);
+}
+
+.bcn-hero h1 {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 750;
+  color: var(--bcn-green-900);
+  margin: 1rem 0 0.8rem;
+}
+
+.bcn-hero .lead {
+  color: var(--bcn-muted);
+  max-width: 34rem;
+}
+
+.bcn-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+
+.bcn-hero-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--bcn-muted);
+}
+
+/* Hero illustration: a CSS-built record card (no external image) */
+.bcn-illustration {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-radius: 14px;
+  box-shadow: var(--bcn-shadow-lg);
+  overflow: hidden;
+}
+
+.bcn-illustration-header {
+  background: var(--bcn-green-800);
+  color: #fff;
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bcn-illustration-header strong {
+  font-size: 0.95rem;
+}
+
+.bcn-illustration-header span {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+
+.bcn-illustration-body {
+  padding: 1.2rem;
+}
+
+.bcn-mini-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--bcn-border);
+  font-size: 0.9rem;
+}
+
+.bcn-mini-row:last-child {
+  border-bottom: 0;
+}
+
+.bcn-mini-row dt {
+  color: var(--bcn-muted);
+  font-weight: 500;
+}
+
+.bcn-mini-row dd {
+  margin: 0;
+  font-weight: 650;
+  text-align: right;
+}
+
+.bcn-id-pill {
+  display: inline-block;
+  background: var(--bcn-gold-soft);
+  border: 1px solid #e3cf8f;
+  color: #6d5205;
+  font-weight: 700;
+  font-size: 0.82rem;
+  border-radius: 7px;
+  padding: 0.25rem 0.6rem;
+}
+
+.bcn-illustration-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bcn-bg-soft);
+  border-top: 1px solid var(--bcn-border);
+  padding: 0.85rem 1.2rem;
+  font-size: 0.82rem;
+  color: var(--bcn-muted);
+}
+
+.bcn-check {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bcn-green-800);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex: 0 0 26px;
+}
+
+/* ---------- 7. Generic sections ---------- */
+.bcn-section {
+  padding: 3rem 0;
+}
+
+.bcn-section-soft {
+  background: var(--bcn-bg-soft);
+  border-top: 1px solid var(--bcn-border);
+  border-bottom: 1px solid var(--bcn-border);
+}
+
+.bcn-section-title {
+  color: var(--bcn-green-900);
+  font-weight: 750;
+  margin-bottom: 0.4rem;
+}
+
+.bcn-section-sub {
+  color: var(--bcn-muted);
+  max-width: 44rem;
+  margin-bottom: 0;
+}
+
+/* ---------- 8. Cards ---------- */
+.bcn-card {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  box-shadow: var(--bcn-shadow);
+  height: 100%;
+}
+
+.bcn-card .card-body {
+  padding: 1.35rem;
+}
+
+.bcn-icon-tile {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--bcn-green-100);
+  border: 1px solid #c6dccf;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.9rem;
+}
+
+.bcn-icon-tile.gold {
+  background: var(--bcn-gold-soft);
+  border-color: #e3cf8f;
+}
+
+.bcn-card h3 {
+  font-size: 1.05rem;
+  color: var(--bcn-green-900);
+}
+
+.bcn-card p {
+  color: var(--bcn-muted);
+  font-size: 0.93rem;
+  margin-bottom: 0;
+}
+
+/* ---------- 9. How-it-works steps ---------- */
+.bcn-step {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  padding: 1.4rem 1.3rem 1.3rem;
+  height: 100%;
+  box-shadow: var(--bcn-shadow);
+}
+
+.bcn-step-number {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--bcn-green-800);
+  color: #fff;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+
+.bcn-step h3 {
+  font-size: 1.02rem;
+  color: var(--bcn-green-900);
+}
+
+.bcn-step p {
+  color: var(--bcn-muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+/* ---------- 10. Statistics band ---------- */
+.bcn-stats {
+  background: var(--bcn-green-900);
+  color: #eaf2ec;
+}
+
+.bcn-stats .bcn-section-title {
+  color: #fff;
+}
+
+.bcn-stats .bcn-section-sub {
+  color: #c4d4c9;
+}
+
+.bcn-stat-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--bcn-radius);
+  padding: 1.2rem;
+  height: 100%;
+}
+
+.bcn-stat-card .number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.bcn-stat-card .label {
+  color: #cfe0d4;
+  font-size: 0.88rem;
+  margin-top: 0.15rem;
+}
+
+.bcn-demo-note {
+  font-size: 0.83rem;
+  color: #c4d4c9;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- 11. Call to action ---------- */
+.bcn-cta {
+  border: 1px solid var(--bcn-border);
+  border-left: 6px solid var(--bcn-gold);
+  border-radius: var(--bcn-radius);
+  background: #fff;
+  box-shadow: var(--bcn-shadow);
+  padding: 1.8rem;
+}
+
+/* ---------- 12. Footer ---------- */
+.bcn-footer {
+  background: var(--bcn-green-900);
+  color: #d5e2d8;
+  padding: 2.6rem 0 1.4rem;
+  margin-top: 0;
+}
+
+.bcn-footer a {
+  color: #eef5ef;
+  text-decoration: none;
+}
+
+.bcn-footer a:hover {
+  text-decoration: underline;
+}
+
+.bcn-footer h2,
+.bcn-footer h3 {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.bcn-footer p,
+.bcn-footer li {
+  font-size: 0.9rem;
+}
+
+.bcn-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bcn-footer ul li {
+  margin-bottom: 0.4rem;
+}
+
+.bcn-disclaimer {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  padding: 0.9rem 1rem;
+  color: #e3ede5;
+}
+
+.bcn-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  font-size: 0.82rem;
+  color: #b9cbbf;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+}
+
+/* ---------- 13. Forms (used in Stage 2, base ready) ---------- */
+.bcn-form-card {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-radius: 12px;
+  box-shadow: var(--bcn-shadow);
+}
+
+.bcn-form-section {
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  padding: 1.3rem;
+  margin-bottom: 1.3rem;
+  background: #fff;
+}
+
+.bcn-form-section > h2 {
+  font-size: 1.08rem;
+  color: var(--bcn-green-900);
+  margin-bottom: 0.2rem;
+}
+
+.bcn-form-section > p {
+  color: var(--bcn-muted);
+  font-size: 0.88rem;
+}
+
+.required-mark {
+  color: #b02a2a;
+  font-weight: 700;
+}
+
+.optional-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--bcn-muted);
+  background: #eef2ef;
+  border: 1px solid var(--bcn-border);
+  border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/* ---------- 14. Tables & dashboard (used in Stage 3, base ready) ---------- */
+.bcn-summary-card {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-left: 5px solid var(--bcn-green-800);
+  border-radius: var(--bcn-radius);
+  box-shadow: var(--bcn-shadow);
+  padding: 1.1rem 1.2rem;
+  height: 100%;
+}
+
+.bcn-summary-card.gold {
+  border-left-color: var(--bcn-gold);
+}
+
+.bcn-summary-card .count {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--bcn-green-900);
+}
+
+.bcn-summary-card .caption {
+  color: var(--bcn-muted);
+  font-size: 0.87rem;
+}
+
+/* Keep wide tables usable on phones */
+.table-responsive {
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  background: #fff;
+}
+
+/* ---------- 15. Print: registration summary only ----------
+   The printable sheet lives in #printArea (populated by
+   records.js just before printing). On paper, hide the entire
+   app interface and show only that sheet. */
+@media print {
+  body > *:not(#printArea) {
+    display: none !important;
+  }
+
+  #printArea {
+    display: block !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  #printContent {
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0.5cm;
+  }
+
+  #printContent h1 {
+    font-size: 17pt;
+    color: #000;
+    border-bottom: 3pt solid #0c4f2e;
+    padding-bottom: 6pt;
+    margin-bottom: 4pt;
+  }
+
+  .bcn-print-sub {
+    color: #333;
+    margin-bottom: 12pt;
+  }
+
+  .bcn-print-list {
+    margin: 0 0 12pt;
+  }
+
+  .bcn-print-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1cm;
+    padding: 4pt 0;
+    border-bottom: 1pt dotted #999;
+  }
+
+  .bcn-print-row dt {
+    color: #333;
+    font-weight: normal;
+  }
+
+  .bcn-print-row dd {
+    margin: 0;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .bcn-print-note {
+    border: 1.5pt solid #000;
+    padding: 8pt;
+    font-size: 10pt;
+  }
+}
+
+/* ---------- 16. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- 17. Small-screen polish ---------- */
+@media (max-width: 575.98px) {
+  .bcn-hero {
+    padding: 2.2rem 0;
+  }
+
+  .bcn-hero-actions .btn {
+    width: 100%;
+  }
+
+  .bcn-cta {
+    padding: 1.3rem;
+  }
+}
+
+/* ---------- 18. Registration success + fictional-data note ---------- */
+.bcn-fictional-note {
+  border-left: 5px solid var(--bcn-gold);
+}
+
+.bcn-success {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-top: 6px solid var(--bcn-green-800);
+  border-radius: 12px;
+  box-shadow: var(--bcn-shadow-lg);
+  padding: 1.6rem;
+}
+
+.bcn-success h2 {
+  font-size: 1.3rem;
+  color: var(--bcn-green-900);
+}
+
+.bcn-success-id {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--bcn-green-900);
+  background: var(--bcn-gold-soft);
+  border: 1px solid #e3cf8f;
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+}
+
+.bcn-check-lg {
+  width: 44px;
+  height: 44px;
+  flex-basis: 44px;
+  font-size: 1.3rem;
+}
+
+/* ---------- 19. Dashboard ---------- */
+.bcn-dashboard h1 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 750;
+}
+
+.bcn-dashboard-note {
+  font-size: 0.82rem;
+  color: var(--bcn-muted);
+  margin-top: 0.6rem;
+  margin-bottom: 0;
+}
+
+/* Search + filters card */
+.bcn-filter-bar {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  box-shadow: var(--bcn-shadow);
+  padding: 1.1rem 1.2rem;
+}
+
+.bcn-result-count {
+  font-size: 0.87rem;
+  font-weight: 700;
+  color: var(--bcn-green-800);
+}
+
+/* Records table */
+.bcn-table thead th {
+  background: var(--bcn-green-900);
+  color: #fff;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border-bottom: 0;
+  padding: 0.75rem 0.8rem;
+}
+
+.bcn-table tbody td {
+  font-size: 0.9rem;
+  padding: 0.7rem 0.8rem;
+  vertical-align: middle;
+}
+
+.bcn-table code {
+  color: var(--bcn-green-900);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.bcn-pill {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--bcn-green-900);
+  background: var(--bcn-green-100);
+  border: 1px solid #c6dccf;
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  white-space: nowrap;
+}
+
+.bcn-pill.gold {
+  color: #6d5205;
+  background: var(--bcn-gold-soft);
+  border-color: #e3cf8f;
+}
+
+.bcn-actions {
+  white-space: nowrap;
+}
+
+.bcn-actions .btn + .btn {
+  margin-left: 0.4rem;
+}
+
+.bcn-empty,
+.bcn-empty-action {
+  text-align: center;
+  padding: 1.6rem 1rem !important;
+  color: var(--bcn-muted);
+}
+
+.bcn-empty {
+  font-weight: 600;
+  color: var(--bcn-green-900);
+}
+
+/* Pagination row */
+.bcn-pagination .btn:disabled {
+  opacity: 0.45;
+}
+
+/* Demonstration-data box */
+.bcn-demo-box {
+  background: #fff;
+  border: 1px dashed var(--bcn-gold);
+  border-radius: var(--bcn-radius);
+  padding: 1.2rem 1.3rem;
+}
+
+.bcn-demo-box h2 {
+  font-size: 1rem;
+  color: var(--bcn-green-900);
+  margin-bottom: 0.25rem;
+}
+
+.bcn-demo-box p {
+  font-size: 0.87rem;
+  color: var(--bcn-muted);
+}
+
+/* Details modal */
+.bcn-modal-header {
+  border-bottom: 3px solid var(--bcn-green-800);
+}
+
+.bcn-detail-list {
+  margin: 0 0 1rem;
+}
+
+.bcn-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--bcn-border);
+  font-size: 0.9rem;
+}
+
+.bcn-detail-row:last-child {
+  border-bottom: 0;
+}
+
+.bcn-detail-row dt {
+  color: var(--bcn-muted);
+  font-weight: 500;
+}
+
+.bcn-detail-row dd {
+  margin: 0;
+  font-weight: 650;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.bcn-disclaimer-light {
+  border: 1px solid var(--bcn-border);
+  background: var(--bcn-bg-soft);
+  color: var(--bcn-muted);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  padding: 0.7rem 0.9rem;
+}
+
+/* Dashboard small screens: compact table + full-width buttons */
+@media (max-width: 575.98px) {
+  .bcn-table tbody td {
+    font-size: 0.83rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .bcn-filter-bar {
+    padding: 1rem;
+  }
+
+  .bcn-pagination .btn {
+    flex: 1;
+  }
+}
