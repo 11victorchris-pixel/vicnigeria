@@ -212,7 +212,8 @@ select:focus-visible,
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: top center;
+  /* sources are portraits: bias the crop toward the upper third (faces) */
+  object-position: 50% 25%;
   border-radius: 5px;
   background: var(--bcn-green-800);
 }
@@ -334,6 +335,8 @@ select:focus-visible,
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+  /* portrait source: keep faces in the upper third of the crop */
+  object-position: 50% 25%;
   border-radius: 5px;
   background: var(--bcn-green-800);
 }
