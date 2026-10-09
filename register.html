@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Register a birth — VicBirth Nigeria Online Birth Recording System. Validated academic demo form saved to browser localStorage with a unique demo ID." />
-  <title>Register a Birth — VicBirth Nigeria (Demo)</title>
+  <meta name="description" content="Register a birth — VicBirth Nigeria Online Birth Recording System. Guided form with instant checks and a unique reference for every record." />
+  <title>Register a Birth — VicBirth Nigeria</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c4f2e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='17' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
 
   <!-- Bootstrap 5 via official CDN (only framework allowed) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
@@ -14,22 +15,17 @@
 </head>
 <body>
 
-  <!-- Thin academic-notice strip -->
-  <div class="bcn-topstrip">
-    <div class="container">
-      <p>Academic demonstration portal &middot; Fictional data only &middot; Records stay in this browser (localStorage)</p>
-    </div>
-  </div>
-
-  <!-- ============ Navigation ============ -->
+  <!-- ============ Header ============ -->
   <nav class="navbar navbar-expand-lg bcn-navbar sticky-top" aria-label="Main navigation">
     <div class="container">
       <a class="bcn-logo" href="index.html" aria-label="VicBirth Nigeria home">
         <span class="bcn-logo-mark" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true">
-            <path d="M12 2.5 20 5.5v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6l8-3Z" fill="#ffffff" opacity="0.95"/>
-            <path d="M12 4.2 18.4 6.4v5.1c0 4-2.7 7-6.4 8.2-3.7-1.2-6.4-4.2-6.4-8.2V6.4L12 4.2Z" fill="#0c4f2e"/>
-            <path d="M8.6 12.2l2.3 2.3 4.5-4.6" stroke="#C9A227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M6 2.5h8L19 7.5V21.5H6V2.5Z" fill="#ffffff"/>
+            <path d="M14 2.5v5h5" fill="#0c4f2e"/>
+            <path d="M9 11.5h6M9 14.5h6" stroke="#0c4f2e" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="16.6" cy="17.6" r="3.6" fill="#C9A227"/>
+            <path d="m15.2 17.6 1 1 1.9-2.1" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </span>
         <span class="bcn-logo-text">
@@ -62,31 +58,35 @@
     </div>
   </nav>
 
-  <main class="bcn-section">
-    <div class="container" style="max-width: 860px;">
+  <!-- ============ Page banner ============ -->
+  <div class="page-banner" style="background-image: url('assets/images/family-care.jpg');">
+    <div class="container">
+      <p class="hero-kicker">Birth registration</p>
+      <h1>Register a Birth</h1>
+      <p>Complete the three sections below. Checks run instantly, and every saved record receives a unique reference.</p>
+    </div>
+  </div>
 
-      <!-- Page header -->
-      <span class="bcn-eyebrow"><span class="dot" aria-hidden="true"></span> Step 1 of 3 &middot; Enter details</span>
-      <h1 class="mt-3" style="color: var(--bcn-green-900);">Register a birth (demonstration)</h1>
-      <p class="bcn-section-sub">
-        Fill in the child&rsquo;s details, then a parent or guardian contact.
-        The record is validated, given a unique <strong>demo</strong> registration ID, and saved in this browser only.
-      </p>
-      <div class="alert alert-warning mt-3 bcn-fictional-note" role="note">
-        Please use <strong>fictional names and phone numbers</strong> (for example, &ldquo;Ada Demo&rdquo; / 0803 000 0000).
-        Never enter real personal data. Nothing is uploaded anywhere.
-      </div>
+  <main class="page-section">
+    <div class="container form-wrap">
 
-      <!-- Error / status alert (filled by register.js; hidden until needed) -->
+      <!-- Progress indicator (presentational guide to the three sections) -->
+      <ol class="form-progress" aria-label="Registration sections">
+        <li><span aria-hidden="true">1</span> Child information</li>
+        <li><span aria-hidden="true">2</span> Parent or guardian</li>
+        <li><span aria-hidden="true">3</span> Birth location</li>
+      </ol>
+
+      <p class="privacy-line">Please use fictional details for this demonstration. Fields marked <span class="required-mark" aria-hidden="true">*</span> are required.</p>
+
+      <!-- Status alert (filled by register.js; hidden until needed) -->
       <div id="formAlert" class="alert d-none" role="alert" aria-live="polite"></div>
 
       <!-- ================= Registration form ================= -->
-      <form id="birthForm" class="bcn-form-card p-3 p-md-4 mt-3" novalidate>
-        <!-- ---- Section A: Child details ---- -->
-        <fieldset class="bcn-form-section">
-          <h2>A. Child details</h2>
-          <p>Identity of the child being recorded. Fields marked <span class="required-mark" aria-hidden="true">*</span> are required.</p>
-
+      <form id="birthForm" class="service-form" novalidate>
+        <!-- ---- Section 1: Child information ---- -->
+        <fieldset class="form-section">
+          <legend><span class="section-number" aria-hidden="true">1</span> Child information</legend>
           <div class="row g-3">
             <div class="col-12">
               <label class="form-label" for="childName">Child&rsquo;s full name <span class="required-mark" aria-hidden="true">*</span></label>
@@ -115,11 +115,56 @@
           </div>
         </fieldset>
 
-        <!-- ---- Section B: Place of birth ---- -->
-        <fieldset class="bcn-form-section">
-          <h2>B. Place of birth</h2>
-          <p>Where the birth took place. Fields marked <span class="required-mark" aria-hidden="true">*</span> are required.</p>
+        <!-- ---- Section 2: Parent or guardian information ---- -->
+        <fieldset class="form-section">
+          <legend><span class="section-number" aria-hidden="true">2</span> Parent or guardian information</legend>
+          <p class="section-hint">One parent or an authorised guardian is enough. Father&rsquo;s name is optional; mother&rsquo;s name is required.</p>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="fatherName">Father&rsquo;s full name <span class="optional-tag">Optional</span></label>
+              <input class="form-control" type="text" id="fatherName" name="fatherName" autocomplete="off"
+                placeholder="Leave blank if not applicable" maxlength="100" />
+              <div class="invalid-feedback" id="fatherName-error">If given, use at least 3 characters.</div>
+            </div>
 
+            <div class="col-md-6">
+              <label class="form-label" for="motherName">Mother&rsquo;s full name <span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="text" id="motherName" name="motherName" autocomplete="off"
+                placeholder="e.g. Ngozi Demo" required minlength="3" maxlength="100" />
+              <div class="invalid-feedback" id="motherName-error">Enter the mother&rsquo;s full name (at least 3 letters).</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contactPhone">Contact number <span class="required-mark" aria-hidden="true">*</span></label>
+              <input class="form-control" type="tel" id="contactPhone" name="contactPhone" autocomplete="off"
+                placeholder="e.g. 0803 000 0000" required inputmode="tel" />
+              <div class="form-text">Digits, spaces, <code>+</code> and <code>-</code> are accepted (7&ndash;15 digits).</div>
+              <div class="invalid-feedback" id="contactPhone-error">Enter a valid phone number (7&ndash;15 digits).</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contactEmail">Email address <span class="optional-tag">Optional</span></label>
+              <input class="form-control" type="email" id="contactEmail" name="contactEmail" autocomplete="off"
+                placeholder="name@example.com" maxlength="120" />
+              <div class="invalid-feedback" id="contactEmail-error">Enter a valid email address, or leave it blank.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="relationship">Relationship to the child <span class="required-mark" aria-hidden="true">*</span></label>
+              <select class="form-select" id="relationship" name="relationship" required>
+                <option value="">Choose&hellip;</option>
+                <option value="Parent">Parent</option>
+                <option value="Guardian">Guardian</option>
+                <option value="Other authorised person">Other authorised person</option>
+              </select>
+              <div class="invalid-feedback" id="relationship-error">Choose who is completing this form.</div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ---- Section 3: Birth location and facility ---- -->
+        <fieldset class="form-section">
+          <legend><span class="section-number" aria-hidden="true">3</span> Birth location and facility information</legend>
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label" for="state">State of birth <span class="required-mark" aria-hidden="true">*</span></label>
@@ -163,88 +208,31 @@
             <div class="col-md-6">
               <label class="form-label" for="facilityName">Hospital / facility name <span class="optional-tag">Optional</span></label>
               <input class="form-control" type="text" id="facilityName" name="facilityName" autocomplete="off"
-                placeholder="Required only if hospital or clinic" maxlength="120" />
+                placeholder="e.g. Demo General Hospital" maxlength="120" />
               <div class="form-text" id="facilityHint">Add the facility name when the birth was in a hospital or clinic.</div>
               <div class="invalid-feedback" id="facilityName-error">Enter the facility name (at least 3 characters).</div>
             </div>
           </div>
         </fieldset>
 
-        <!-- ---- Section C: Parent / guardian details ---- -->
-        <fieldset class="bcn-form-section">
-          <h2>C. Parent or guardian details</h2>
-          <p>One parent or an authorised guardian is enough. Father&rsquo;s name is optional; mother&rsquo;s name is required.</p>
-
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label" for="fatherName">Father&rsquo;s full name <span class="optional-tag">Optional</span></label>
-              <input class="form-control" type="text" id="fatherName" name="fatherName" autocomplete="off"
-                placeholder="Leave blank if not applicable" maxlength="100" />
-              <div class="invalid-feedback" id="fatherName-error">If given, use at least 3 characters.</div>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="motherName">Mother&rsquo;s full name <span class="required-mark" aria-hidden="true">*</span></label>
-              <input class="form-control" type="text" id="motherName" name="motherName" autocomplete="off"
-                placeholder="e.g. Ngozi Demo" required minlength="3" maxlength="100" />
-              <div class="invalid-feedback" id="motherName-error">Enter the mother&rsquo;s full name (at least 3 letters).</div>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="contactPhone">Parent / guardian contact number <span class="required-mark" aria-hidden="true">*</span></label>
-              <input class="form-control" type="tel" id="contactPhone" name="contactPhone" autocomplete="off"
-                placeholder="e.g. 0803 000 0000" required inputmode="tel" />
-              <div class="form-text">Digits, spaces, <code>+</code> and <code>-</code> are accepted (7&ndash;15 digits).</div>
-              <div class="invalid-feedback" id="contactPhone-error">Enter a valid phone number (7&ndash;15 digits).</div>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="contactEmail">Parent / guardian email <span class="optional-tag">Optional</span></label>
-              <input class="form-control" type="email" id="contactEmail" name="contactEmail" autocomplete="off"
-                placeholder="name@example.com" maxlength="120" />
-              <div class="invalid-feedback" id="contactEmail-error">Enter a valid email address, or leave it blank.</div>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="relationship">Relationship to the child <span class="required-mark" aria-hidden="true">*</span></label>
-              <select class="form-select" id="relationship" name="relationship" required>
-                <option value="">Choose&hellip;</option>
-                <option value="Parent">Parent</option>
-                <option value="Guardian">Guardian</option>
-                <option value="Other authorised person">Other authorised person</option>
-              </select>
-              <div class="invalid-feedback" id="relationship-error">Choose who is completing this form.</div>
-            </div>
-          </div>
-        </fieldset>
-
         <!-- ---- Actions ---- -->
-        <div class="d-flex flex-wrap gap-2 align-items-center">
-          <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
-            Save demonstration registration
-          </button>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Submit Registration</button>
           <button type="button" class="btn btn-outline-secondary" id="clearBtn">Clear form</button>
-          <a class="btn btn-link" href="records.html">View records instead</a>
         </div>
-        <p class="bcn-hero-note mb-0">Saving writes to this browser&rsquo;s localStorage only. No data is sent anywhere.</p>
       </form>
 
       <!-- ================= Success confirmation (hidden until saved) ================= -->
-      <section id="successPanel" class="bcn-success d-none mt-3" aria-live="polite" aria-labelledby="successTitle">
-        <div class="d-flex align-items-start gap-3">
-          <span class="bcn-check bcn-check-lg" aria-hidden="true">&#10003;</span>
-          <div class="flex-grow-1">
-            <h2 id="successTitle" class="mb-1">Demonstration registration saved</h2>
-            <p class="mb-2">This record is stored in this browser only. It is <strong>not</strong> an official government registration or birth-certificate number.</p>
-            <p class="mb-1">Demo registration ID:</p>
-            <p class="bcn-success-id" id="successId">VBN-&hellip;</p>
-            <p class="text-muted small mb-3" id="successTime"></p>
-            <div class="d-flex flex-wrap gap-2">
-              <a class="btn btn-primary" href="records.html">View on dashboard</a>
-              <button type="button" class="btn btn-outline-secondary" id="anotherBtn">Register another birth</button>
-              <a class="btn btn-link" href="index.html">Back to Home</a>
-            </div>
-          </div>
+      <section id="successPanel" class="success-card d-none mt-3" aria-live="polite" aria-labelledby="successTitle">
+        <span class="success-check" aria-hidden="true">&#10003;</span>
+        <h2 id="successTitle">Registration saved successfully</h2>
+        <p>Your record has been saved and issued the reference below. Keep it safe &mdash; you can use it to find this record on the dashboard.</p>
+        <p class="success-label">Registration reference</p>
+        <p class="success-id" id="successId">VBN-&hellip;</p>
+        <p class="text-muted small mb-3" id="successTime"></p>
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+          <a class="btn btn-primary" href="records.html">View on Dashboard</a>
+          <button type="button" class="btn btn-outline-secondary" id="anotherBtn">Register Another Birth</button>
         </div>
       </section>
 
@@ -252,40 +240,24 @@
   </main>
 
   <!-- ============ Footer ============ -->
-  <footer class="bcn-footer">
+  <footer class="site-footer">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-md-5">
-          <h2>VicBirth Nigeria</h2>
-          <p>An academic prototype showing how an online birth recording system can improve accessibility, organisation, retrieval, and management of birth registration records.</p>
+      <div class="row g-3 align-items-start">
+        <div class="col-md-6">
+          <p class="footer-brand">VicBirth Nigeria</p>
+          <p class="footer-tag">Online Birth Recording System &mdash; Digital Birth Recording, Made Simpler.</p>
         </div>
-        <div class="col-6 col-md-3">
-          <h3>Navigate</h3>
-          <ul>
+        <div class="col-md-6">
+          <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="register.html">Register a Birth</a></li>
-            <li><a href="records.html">Records Dashboard</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md-4">
-          <h3>About this demo</h3>
-          <ul>
-            <li>Built with HTML5, CSS3, vanilla JavaScript &amp; Bootstrap 5</li>
-            <li>Data stored only in browser localStorage</li>
-            <li>Use fictional records &mdash; never real personal data</li>
+            <li><a href="records.html">Records</a></li>
           </ul>
         </div>
       </div>
-
-      <div class="bcn-disclaimer mt-3" role="note">
-        <strong>Please note:</strong> VicBirth Nigeria is an independent academic demonstration project.
-        It is not an official government registration platform. Records and registration IDs generated here
-        are for demonstration purposes only.
-      </div>
-
-      <div class="bcn-footer-bottom">
-        <span>&copy; 2026 VicBirth Nigeria &mdash; Online Birth Recording System (academic demo).</span>
-        <span>All sample records are fictional.</span>
+      <div class="footer-bottom">
+        <span>&copy; 2026 VicBirth Nigeria. All rights reserved.</span>
+        <span class="footer-notice">An independent service, not affiliated with the National Population Commission.</span>
       </div>
     </div>
   </footer>

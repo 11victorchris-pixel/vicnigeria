@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Records dashboard — VicBirth Nigeria Online Birth Recording System. Search, filter, view, export and print demonstration birth records stored in this browser." />
-  <title>Records Dashboard — VicBirth Nigeria (Demo)</title>
+  <meta name="description" content="Records — VicBirth Nigeria Online Birth Recording System. Search, filter, view, export and print birth records." />
+  <title>Records — VicBirth Nigeria</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c4f2e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='17' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
 
   <!-- Bootstrap 5 via official CDN (only framework allowed) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
@@ -14,22 +15,17 @@
 </head>
 <body>
 
-  <!-- Thin academic-notice strip -->
-  <div class="bcn-topstrip">
-    <div class="container">
-      <p>Academic demonstration portal &middot; Fictional data only &middot; Records stay in this browser (localStorage)</p>
-    </div>
-  </div>
-
   <!-- ============ Navigation ============ -->
   <nav class="navbar navbar-expand-lg bcn-navbar sticky-top" aria-label="Main navigation">
     <div class="container">
       <a class="bcn-logo" href="index.html" aria-label="VicBirth Nigeria home">
         <span class="bcn-logo-mark" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true">
-            <path d="M12 2.5 20 5.5v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6l8-3Z" fill="#ffffff" opacity="0.95"/>
-            <path d="M12 4.2 18.4 6.4v5.1c0 4-2.7 7-6.4 8.2-3.7-1.2-6.4-4.2-6.4-8.2V6.4L12 4.2Z" fill="#0c4f2e"/>
-            <path d="M8.6 12.2l2.3 2.3 4.5-4.6" stroke="#C9A227" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M6 2.5h8L19 7.5V21.5H6V2.5Z" fill="#ffffff"/>
+            <path d="M14 2.5v5h5" fill="#0c4f2e"/>
+            <path d="M9 11.5h6M9 14.5h6" stroke="#0c4f2e" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="16.6" cy="17.6" r="3.6" fill="#C9A227"/>
+            <path d="m15.2 17.6 1 1 1.9-2.1" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </span>
         <span class="bcn-logo-text">
@@ -66,11 +62,10 @@
     <div class="container">
 
       <!-- Dashboard header -->
-      <div class="d-flex flex-wrap align-items-end justify-content-between gap-3">
+      <div class="dash-head">
         <div>
-          <span class="bcn-eyebrow"><span class="dot" aria-hidden="true"></span> Records dashboard</span>
-          <h1 class="mt-2 mb-1" style="color: var(--bcn-green-900);">Birth records</h1>
-          <p class="bcn-section-sub">Search, filter, view, export, and print the fictional demonstration records stored in this browser.</p>
+          <h1>Birth Records</h1>
+          <p>Search, filter, view, export, and print birth records.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
           <a class="btn btn-primary" href="register.html">Register New Birth</a>
@@ -79,8 +74,7 @@
       </div>
 
       <div class="alert alert-warning mt-3 bcn-fictional-note" role="note">
-        <strong>Privacy:</strong> CSV exports may contain personal data from the records.
-        Only use fictional records in this demonstration &mdash; never real personal information.
+        <strong>Privacy:</strong> exports may contain personal details. Use fictional records only &mdash; never real personal information.
       </div>
 
       <!-- Page-level messages (CSV empty result, storage problems) -->
@@ -91,32 +85,30 @@
         <div class="col-6 col-lg-3">
           <div class="bcn-summary-card">
             <div class="count" id="sum-total">0</div>
-            <div class="caption">Total registrations</div>
+            <div class="caption">Total records</div>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="bcn-summary-card gold">
             <div class="count" id="sum-today">0</div>
-            <div class="caption">Registered today (local date)</div>
+            <div class="caption">Added today</div>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="bcn-summary-card">
             <div class="count" id="sum-male">0</div>
-            <div class="caption">Male records</div>
+            <div class="caption">Male</div>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="bcn-summary-card">
             <div class="count" id="sum-female">0</div>
-            <div class="caption">Female records</div>
+            <div class="caption">Female</div>
           </div>
         </div>
       </div>
       <p class="bcn-dashboard-note">
-        Counts are calculated live from stored demo records. &ldquo;Today&rdquo; compares each record&rsquo;s saved
-        creation timestamp with the local calendar date. Records marked &ldquo;Unspecified&rdquo; are counted in the
-        total but in neither the male nor female cards.
+        Live counts from records in this browser. &ldquo;Unspecified&rdquo; records appear in the total only.
       </p>
 
       <!-- Search and filters -->
@@ -193,9 +185,9 @@
       <section class="bcn-demo-box mt-4" aria-labelledby="demoTitle">
         <div class="row align-items-center g-2">
           <div class="col-md-8">
-            <h2 id="demoTitle">Demonstration data</h2>
-            <p class="mb-0">The dashboard starts with a small set of clearly fictional sample records.
-              Deleted samples never return on reload. Use this button only to restore them for a fresh demonstration.</p>
+            <h2 id="demoTitle">Sample data</h2>
+            <p class="mb-0">The dashboard starts with fictional sample records. Deleted samples never return.
+              Restore them here for a fresh demonstration.</p>
           </div>
           <div class="col-md-4 text-md-end">
             <button type="button" class="btn btn-outline-secondary" id="resetDemo">Reset sample data</button>
@@ -217,7 +209,7 @@
         <div class="modal-body">
           <dl class="bcn-detail-list" id="detailsList"><!-- Filled by records.js --></dl>
           <div class="bcn-disclaimer bcn-disclaimer-light" role="note">
-            Academic demonstration record &mdash; not an official birth certificate.
+            This record summary is not an official birth certificate.
           </div>
         </div>
         <div class="modal-footer">
@@ -253,41 +245,24 @@
   </section>
 
   <!-- ============ Footer ============ -->
-  <footer class="bcn-footer">
+  <footer class="site-footer">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-md-5">
-          <h2>VicBirth Nigeria</h2>
-          <p class="mb-1"><em>Online Birth Recording System &mdash; Digital Birth Recording, Made Simpler.</em></p>
-          <p>An independent academic prototype showing how an online birth recording system can improve accessibility, organisation, retrieval, and management of birth registration records.</p>
+      <div class="row g-3 align-items-start">
+        <div class="col-md-6">
+          <p class="footer-brand">VicBirth Nigeria</p>
+          <p class="footer-tag">Online Birth Recording System &mdash; Digital Birth Recording, Made Simpler.</p>
         </div>
-        <div class="col-6 col-md-3">
-          <h3>Navigate</h3>
-          <ul>
+        <div class="col-md-6">
+          <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="register.html">Register a Birth</a></li>
-            <li><a href="records.html">Records Dashboard</a></li>
-          </ul>
-        </div>
-        <div class="col-6 col-md-4">
-          <h3>About this demo</h3>
-          <ul>
-            <li>Built with HTML5, CSS3, vanilla JavaScript &amp; Bootstrap 5</li>
-            <li>Data stored only in browser localStorage</li>
-            <li>Use fictional records &mdash; never real personal data</li>
+            <li><a href="records.html">Records</a></li>
           </ul>
         </div>
       </div>
-
-      <div class="bcn-disclaimer mt-3" role="note">
-        <strong>Please note:</strong> VicBirth Nigeria is an independent academic demonstration project.
-        It is not an official government registration platform. Records and registration IDs generated here
-        are for demonstration purposes only.
-      </div>
-
-      <div class="bcn-footer-bottom">
-        <span>&copy; 2026 VicBirth Nigeria &mdash; Online Birth Recording System (academic demo).</span>
-        <span>All sample records are fictional.</span>
+      <div class="footer-bottom">
+        <span>&copy; 2026 VicBirth Nigeria. All rights reserved.</span>
+        <span class="footer-notice">An independent service, not affiliated with the National Population Commission.</span>
       </div>
     </div>
   </footer>

@@ -1,29 +1,31 @@
 /* ============================================================
-   VicBirth Nigeria — shared design system
-   Plain CSS + Bootstrap 5. Colours: deep government green,
-   neutral light grey, restrained gold accent.
+   VicBirth Nigeria — Online Birth Recording System
+   Shared design system: plain CSS + Bootstrap 5.
+   Deep green brand, white surfaces, light grey sections,
+   restrained gold accents, charcoal text.
    Organised so a student can explain each section.
    ============================================================ */
 
-/* ---------- 1. Design tokens (colours, spacing) ---------- */
+/* ---------- 1. Design tokens ---------- */
 :root {
-  --bcn-green-900: #0a3d24;   /* darkest green: footer, stat band */
-  --bcn-green-800: #0c4f2e;   /* primary brand green */
-  --bcn-green-700: #0e6639;   /* hover green */
-  --bcn-green-100: #e3efe7;   /* pale green tint for badges */
+  --bcn-green-900: #0a3d24;   /* darkest green: hero, footer, table head */
+  --bcn-green-800: #0c4f2e;   /* primary brand green: buttons, accents */
+  --bcn-green-700: #0e6639;   /* button hover green */
+  --bcn-green-100: #e3efe7;   /* pale green tint: badges, active links */
   --bcn-gold: #b98a12;        /* restrained gold accent */
+  --bcn-gold-dark: #96700d;   /* gold hover */
   --bcn-gold-soft: #f6ecd0;   /* pale gold tint */
-  --bcn-bg: #ffffff;          /* page background */
-  --bcn-bg-soft: #f3f5f4;     /* light neutral section bg */
-  --bcn-ink: #1c2b23;         /* main text */
-  --bcn-muted: #5d6f64;       /* secondary text */
-  --bcn-border: #dde5df;      /* subtle borders */
-  --bcn-radius: 10px;         /* restrained corner radius */
-  --bcn-shadow: 0 2px 10px rgba(10, 61, 36, 0.08);
-  --bcn-shadow-lg: 0 10px 30px rgba(10, 61, 36, 0.12);
+  --bcn-bg: #ffffff;
+  --bcn-bg-soft: #f2f4f3;     /* light neutral-grey sections */
+  --bcn-ink: #252b27;         /* dark charcoal text */
+  --bcn-muted: #5c6b62;       /* secondary text */
+  --bcn-border: #d9e1dc;      /* subtle borders */
+  --bcn-radius: 8px;          /* restrained corner radius */
+  --bcn-shadow: 0 1px 6px rgba(10, 61, 36, 0.08);
+  --bcn-shadow-lg: 0 8px 24px rgba(10, 61, 36, 0.12);
 }
 
-/* ---------- 2. Base typography & page ---------- */
+/* ---------- 2. Base ---------- */
 html {
   scroll-behavior: smooth;
 }
@@ -33,7 +35,7 @@ body {
   color: var(--bcn-ink);
   background: var(--bcn-bg);
   line-height: 1.6;
-  overflow-x: hidden; /* guard against horizontal overflow */
+  overflow-x: hidden; /* guard against horizontal scrolling */
 }
 
 h1, h2, h3, h4 {
@@ -41,7 +43,12 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-/* Visible, consistent keyboard focus (accessibility) */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Visible keyboard focus for accessibility */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -51,22 +58,12 @@ select:focus-visible,
   outline-offset: 2px;
 }
 
-/* ---------- 3. Top utility strip ---------- */
-.bcn-topstrip {
-  background: var(--bcn-green-900);
-  color: #dfe9e2;
-  font-size: 0.8rem;
-}
-
-.bcn-topstrip p {
-  margin: 0;
-  padding: 0.4rem 0;
-}
-
-/* ---------- 4. Navigation ---------- */
+/* ---------- 3. Header ---------- */
 .bcn-navbar {
   background: #fff;
   border-bottom: 1px solid var(--bcn-border);
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
 }
 
 .bcn-logo {
@@ -77,10 +74,10 @@ select:focus-visible,
 }
 
 .bcn-logo-mark {
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
-  border-radius: 9px;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 8px;
   background: var(--bcn-green-800);
   display: inline-flex;
   align-items: center;
@@ -99,29 +96,30 @@ select:focus-visible,
 
 .bcn-logo-text small {
   color: var(--bcn-muted);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .bcn-navbar .nav-link {
   color: var(--bcn-ink);
-  font-weight: 500;
-  padding: 0.55rem 0.85rem;
-  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
 }
 
 .bcn-navbar .nav-link:hover {
-  background: var(--bcn-bg-soft);
   color: var(--bcn-green-800);
 }
 
 .bcn-navbar .nav-link.active {
   color: var(--bcn-green-800);
-  background: var(--bcn-green-100);
+  border-bottom-color: var(--bcn-gold);
 }
 
-/* ---------- 5. Buttons (Bootstrap overrides) ---------- */
+/* ---------- 4. Buttons ---------- */
 .btn-primary {
   --bs-btn-bg: var(--bcn-green-800);
   --bs-btn-border-color: var(--bcn-green-800);
@@ -149,393 +147,536 @@ select:focus-visible,
 
 .btn-gold:hover,
 .btn-gold:focus {
-  background: #a1760e;
-  border-color: #a1760e;
+  background: var(--bcn-gold-dark);
+  border-color: var(--bcn-gold-dark);
   color: #fff;
 }
 
-/* ---------- 6. Hero ---------- */
-.bcn-hero {
-  background: linear-gradient(180deg, #f7faf8 0%, #ffffff 100%);
-  border-bottom: 1px solid var(--bcn-border);
-  padding: 3.2rem 0 3rem;
+/* ---------- 5. Homepage hero ---------- */
+.hero {
+  background: var(--bcn-green-900);
+  color: #fff;
+  padding: 3rem 0;
+  border-bottom: 4px solid var(--bcn-gold);
 }
 
-.bcn-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: var(--bcn-green-100);
-  color: var(--bcn-green-900);
-  border: 1px solid #c6dccf;
-  font-size: 0.78rem;
+.hero-kicker {
+  color: var(--bcn-gold-soft);
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-radius: 999px;
-  padding: 0.35rem 0.8rem;
+  margin-bottom: 0.6rem;
 }
 
-.bcn-eyebrow .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--bcn-gold);
-}
-
-.bcn-hero h1 {
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
+.hero h1 {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
   font-weight: 750;
-  color: var(--bcn-green-900);
-  margin: 1rem 0 0.8rem;
+  margin-bottom: 0.7rem;
 }
 
-.bcn-hero .lead {
-  color: var(--bcn-muted);
-  max-width: 34rem;
+.hero-sub {
+  color: #d7e4da;
+  font-size: 1.08rem;
+  max-width: 30rem;
 }
 
-.bcn-hero-actions {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
   margin-top: 1.4rem;
 }
 
-.bcn-hero-note {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: var(--bcn-muted);
+/* Gold primary action on the dark hero */
+.hero .btn-primary {
+  --bs-btn-bg: var(--bcn-gold);
+  --bs-btn-border-color: var(--bcn-gold);
+  --bs-btn-hover-bg: var(--bcn-gold-dark);
+  --bs-btn-hover-border-color: var(--bcn-gold-dark);
+  --bs-btn-active-bg: var(--bcn-gold-dark);
+  --bs-btn-active-border-color: var(--bcn-gold-dark);
 }
 
-/* Hero illustration: a CSS-built record card (no external image) */
-.bcn-illustration {
-  background: #fff;
-  border: 1px solid var(--bcn-border);
-  border-radius: 14px;
-  box-shadow: var(--bcn-shadow-lg);
-  overflow: hidden;
-}
-
-.bcn-illustration-header {
-  background: var(--bcn-green-800);
-  color: #fff;
-  padding: 0.9rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.bcn-illustration-header strong {
-  font-size: 0.95rem;
-}
-
-.bcn-illustration-header span {
-  font-size: 0.75rem;
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  padding: 0.2rem 0.65rem;
-}
-
-.bcn-illustration-body {
-  padding: 1.2rem;
-}
-
-.bcn-mini-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px dashed var(--bcn-border);
-  font-size: 0.9rem;
-}
-
-.bcn-mini-row:last-child {
-  border-bottom: 0;
-}
-
-.bcn-mini-row dt {
-  color: var(--bcn-muted);
-  font-weight: 500;
-}
-
-.bcn-mini-row dd {
+/* Photo frame: deep-green fallback so a missing image still looks neat */
+.hero-photo {
   margin: 0;
-  font-weight: 650;
-  text-align: right;
-}
-
-.bcn-id-pill {
-  display: inline-block;
-  background: var(--bcn-gold-soft);
-  border: 1px solid #e3cf8f;
-  color: #6d5205;
-  font-weight: 700;
-  font-size: 0.82rem;
-  border-radius: 7px;
-  padding: 0.25rem 0.6rem;
-}
-
-.bcn-illustration-footer {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: var(--bcn-bg-soft);
-  border-top: 1px solid var(--bcn-border);
-  padding: 0.85rem 1.2rem;
-  font-size: 0.82rem;
-  color: var(--bcn-muted);
-}
-
-.bcn-check {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
   background: var(--bcn-green-800);
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  flex: 0 0 26px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--bcn-radius);
+  padding: 0.5rem;
 }
 
-/* ---------- 7. Generic sections ---------- */
-.bcn-section {
-  padding: 3rem 0;
+.hero-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 5px;
+  background: var(--bcn-green-800);
 }
 
-.bcn-section-soft {
-  background: var(--bcn-bg-soft);
-  border-top: 1px solid var(--bcn-border);
+.hero-photo figcaption,
+.band-photo figcaption {
+  font-size: 0.72rem;
+  color: #b9cbbf;
+  padding: 0.4rem 0.2rem 0.1rem;
+}
+
+/* ---------- 6. Service strip ---------- */
+.service-strip {
+  background: #fff;
   border-bottom: 1px solid var(--bcn-border);
 }
 
-.bcn-section-title {
+.service-strip ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.8rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+}
+
+.service-strip li {
+  font-size: 0.86rem;
+  font-weight: 600;
   color: var(--bcn-green-900);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.service-strip li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.55em;
+  height: 0.55em;
+  background: var(--bcn-gold);
+}
+
+/* ---------- 7. Page sections ---------- */
+.page-section {
+  padding: 2.5rem 0;
+}
+
+.section-title {
+  color: var(--bcn-green-900);
+  font-size: 1.4rem;
   font-weight: 750;
   margin-bottom: 0.4rem;
-}
-
-.bcn-section-sub {
-  color: var(--bcn-muted);
-  max-width: 44rem;
-  margin-bottom: 0;
-}
-
-/* ---------- 8. Cards ---------- */
-.bcn-card {
-  background: #fff;
-  border: 1px solid var(--bcn-border);
-  border-radius: var(--bcn-radius);
-  box-shadow: var(--bcn-shadow);
-  height: 100%;
-}
-
-.bcn-card .card-body {
-  padding: 1.35rem;
-}
-
-.bcn-icon-tile {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: var(--bcn-green-100);
-  border: 1px solid #c6dccf;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.9rem;
-}
-
-.bcn-icon-tile.gold {
-  background: var(--bcn-gold-soft);
-  border-color: #e3cf8f;
-}
-
-.bcn-card h3 {
-  font-size: 1.05rem;
-  color: var(--bcn-green-900);
-}
-
-.bcn-card p {
-  color: var(--bcn-muted);
-  font-size: 0.93rem;
-  margin-bottom: 0;
-}
-
-/* ---------- 9. How-it-works steps ---------- */
-.bcn-step {
+  padding-bottom: 0.5rem;
   position: relative;
-  background: #fff;
-  border: 1px solid var(--bcn-border);
-  border-radius: var(--bcn-radius);
-  padding: 1.4rem 1.3rem 1.3rem;
-  height: 100%;
-  box-shadow: var(--bcn-shadow);
 }
 
-.bcn-step-number {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--bcn-green-800);
-  color: #fff;
-  font-weight: 800;
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 3rem;
+  height: 3px;
+  background: var(--bcn-gold);
+}
+
+/* ---------- 8. Benefits ---------- */
+.benefit {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-top: 3px solid var(--bcn-green-800);
+  border-radius: var(--bcn-radius);
+  box-shadow: var(--bcn-shadow);
+  padding: 1.2rem;
+  height: 100%;
+}
+
+.benefit-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--bcn-green-100);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.8rem;
 }
 
-.bcn-step h3 {
-  font-size: 1.02rem;
+.benefit h3 {
+  font-size: 1rem;
   color: var(--bcn-green-900);
+  margin-bottom: 0.3rem;
 }
 
-.bcn-step p {
+.benefit p {
   color: var(--bcn-muted);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   margin: 0;
 }
 
-/* ---------- 10. Statistics band ---------- */
-.bcn-stats {
-  background: var(--bcn-green-900);
-  color: #eaf2ec;
+/* ---------- 9. Photo band ---------- */
+.photo-band {
+  background: var(--bcn-bg-soft);
+  border-top: 1px solid var(--bcn-border);
+  border-bottom: 1px solid var(--bcn-border);
 }
 
-.bcn-stats .bcn-section-title {
-  color: #fff;
-}
-
-.bcn-stats .bcn-section-sub {
-  color: #c4d4c9;
-}
-
-.bcn-stat-card {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+.band-photo {
+  margin: 0;
+  background: var(--bcn-green-800);
   border-radius: var(--bcn-radius);
-  padding: 1.2rem;
-  height: 100%;
+  padding: 0.5rem;
 }
 
-.bcn-stat-card .number {
-  font-size: 2rem;
-  font-weight: 800;
+.band-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 5px;
+  background: var(--bcn-green-800);
+}
+
+.photo-band .band-photo figcaption {
+  color: var(--bcn-muted);
+}
+
+.tick-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.3rem;
+}
+
+.tick-list li {
+  padding: 0.4rem 0 0.4rem 2rem;
+  position: relative;
+  color: var(--bcn-ink);
+}
+
+.tick-list li::before {
+  content: "\2713"; /* check mark character, not an emoji */
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--bcn-green-800);
   color: #fff;
-  line-height: 1.1;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.bcn-stat-card .label {
-  color: #cfe0d4;
-  font-size: 0.88rem;
-  margin-top: 0.15rem;
+/* ---------- 10. Steps ---------- */
+.steps {
+  list-style: none;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  counter-reset: step;
 }
 
-.bcn-demo-note {
-  font-size: 0.83rem;
-  color: #c4d4c9;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-  padding-top: 1rem;
-  margin-top: 1.5rem;
-}
-
-/* ---------- 11. Call to action ---------- */
-.bcn-cta {
-  border: 1px solid var(--bcn-border);
-  border-left: 6px solid var(--bcn-gold);
-  border-radius: var(--bcn-radius);
+.steps li {
   background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
   box-shadow: var(--bcn-shadow);
-  padding: 1.8rem;
+  padding: 1.2rem;
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
 }
 
-/* ---------- 12. Footer ---------- */
-.bcn-footer {
+.step-number {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  background: var(--bcn-green-800);
+  color: #fff;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.steps h3 {
+  font-size: 1rem;
+  color: var(--bcn-green-900);
+  margin-bottom: 0.25rem;
+}
+
+.steps p {
+  color: var(--bcn-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ---------- 11. Home statistics (compact strip) ---------- */
+.home-stats {
+  background: var(--bcn-bg-soft);
+  border-top: 1px solid var(--bcn-border);
+  padding: 1.8rem 0;
+}
+
+.home-stats h2 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bcn-muted);
+  margin-bottom: 0.8rem;
+}
+
+.home-stats dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 3rem;
+  margin: 0;
+}
+
+.home-stats dl > div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.home-stats dt {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--bcn-muted);
+  order: 2;
+}
+
+.home-stats dd {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--bcn-green-900);
+  order: 1;
+  line-height: 1;
+}
+
+.home-stats p {
+  font-size: 0.82rem;
+  color: var(--bcn-muted);
+  margin: 0.8rem 0 0;
+}
+
+.home-stats p a {
+  color: var(--bcn-green-800);
+  font-weight: 600;
+}
+
+/* ---------- 12. Compact footer ---------- */
+.site-footer {
   background: var(--bcn-green-900);
-  color: #d5e2d8;
-  padding: 2.6rem 0 1.4rem;
-  margin-top: 0;
+  color: #cfddd3;
+  padding: 2rem 0 1.2rem;
 }
 
-.bcn-footer a {
+.footer-brand {
+  color: #fff;
+  font-weight: 750;
+  font-size: 1.05rem;
+  margin-bottom: 0.15rem;
+}
+
+.footer-tag {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  justify-content: flex-end;
+}
+
+.footer-links a {
   color: #eef5ef;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.bcn-footer a:hover {
+.footer-links a:hover {
   text-decoration: underline;
 }
 
-.bcn-footer h2,
-.bcn-footer h3 {
-  color: #fff;
-  font-size: 1rem;
-}
-
-.bcn-footer p,
-.bcn-footer li {
-  font-size: 0.9rem;
-}
-
-.bcn-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.bcn-footer ul li {
-  margin-bottom: 0.4rem;
-}
-
-.bcn-disclaimer {
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 8px;
-  font-size: 0.82rem;
-  padding: 0.9rem 1rem;
-  color: #e3ede5;
-}
-
-.bcn-footer-bottom {
+.footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.16);
-  margin-top: 1.6rem;
-  padding-top: 1rem;
-  font-size: 0.82rem;
-  color: #b9cbbf;
+  margin-top: 1.2rem;
+  padding-top: 0.9rem;
+  font-size: 0.78rem;
+  color: #a9bcb0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  gap: 0.3rem 1.5rem;
   justify-content: space-between;
 }
 
-/* ---------- 13. Forms (used in Stage 2, base ready) ---------- */
-.bcn-form-card {
-  background: #fff;
-  border: 1px solid var(--bcn-border);
-  border-radius: 12px;
-  box-shadow: var(--bcn-shadow);
+.footer-notice {
+  font-style: italic;
 }
 
-.bcn-form-section {
+/* Light disclaimer used inside the record-details modal */
+.bcn-disclaimer-light {
+  background: var(--bcn-bg-soft);
+}
+
+/* ---------- 13. Inner page banner (register) ---------- */
+.page-banner {
+  background-color: var(--bcn-green-900); /* fallback if the photo fails */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 2.4rem 0;
+  position: relative;
+}
+
+.page-banner::before {
+  /* deep-green overlay keeps white text readable over any photo */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 61, 36, 0.88);
+}
+
+.page-banner .container {
+  position: relative;
+}
+
+.page-banner h1 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 750;
+  margin-bottom: 0.4rem;
+}
+
+.page-banner p {
+  color: #d7e4da;
+  margin: 0;
+  max-width: 36rem;
+}
+
+.page-banner .hero-kicker {
+  margin-bottom: 0.4rem;
+}
+
+/* ---------- 14. Service form ---------- */
+.form-wrap {
+  max-width: 820px;
+}
+
+.form-progress {
+  list-style: none;
+  margin: 0 0 1.2rem;
+  padding: 1rem 1.2rem;
+  background: #fff;
   border: 1px solid var(--bcn-border);
   border-radius: var(--bcn-radius);
-  padding: 1.3rem;
-  margin-bottom: 1.3rem;
-  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.8rem;
 }
 
-.bcn-form-section > h2 {
-  font-size: 1.08rem;
-  color: var(--bcn-green-900);
-  margin-bottom: 0.2rem;
-}
-
-.bcn-form-section > p {
-  color: var(--bcn-muted);
+.form-progress li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--bcn-green-900);
+}
+
+.form-progress span {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  border-radius: 50%;
+  background: var(--bcn-green-800);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.privacy-line {
+  font-size: 0.86rem;
+  color: var(--bcn-muted);
+  border-left: 4px solid var(--bcn-gold);
+  padding-left: 0.8rem;
+}
+
+.service-form {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  box-shadow: var(--bcn-shadow);
+  padding: 1.5rem;
+}
+
+.form-section {
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-section legend {
+  font-size: 1.05rem;
+  font-weight: 750;
+  color: var(--bcn-green-900);
+  padding: 0 0.5rem;
+  margin-bottom: 0;
+  float: none;
+  width: auto;
+}
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bcn-green-800);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.section-hint {
+  color: var(--bcn-muted);
+  font-size: 0.87rem;
+  margin: 0.4rem 0 1rem;
+}
+
+.service-form .form-label {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* Consistent, tappable input heights */
+.service-form .form-control,
+.service-form .form-select {
+  min-height: 3rem;
+  border-radius: 7px;
+  font-size: 0.95rem;
 }
 
 .required-mark {
@@ -555,43 +696,295 @@ select:focus-visible,
   vertical-align: middle;
 }
 
-/* ---------- 14. Tables & dashboard (used in Stage 3, base ready) ---------- */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+/* ---------- 15. Success confirmation ---------- */
+.success-card {
+  background: #fff;
+  border: 1px solid var(--bcn-border);
+  border-top: 5px solid var(--bcn-green-800);
+  border-radius: var(--bcn-radius);
+  box-shadow: var(--bcn-shadow-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.success-check {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bcn-green-800);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+
+.success-card h2 {
+  font-size: 1.3rem;
+  color: var(--bcn-green-900);
+}
+
+.success-card p {
+  color: var(--bcn-muted);
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem !important;
+}
+
+.success-id {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--bcn-green-900);
+  background: var(--bcn-gold-soft);
+  border: 1px solid #e3cf8f;
+  border-radius: 7px;
+  padding: 0.4rem 0.9rem;
+}
+
+/* ---------- 16. Dashboard ---------- */
+.bcn-section {
+  padding: 2.2rem 0;
+}
+
+/* Dashboard heading with green rule */
+.dash-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--bcn-green-800);
+  padding-bottom: 1rem;
+}
+
+.dash-head h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 750;
+  color: var(--bcn-green-900);
+  margin-bottom: 0.2rem;
+}
+
+.dash-head p {
+  color: var(--bcn-muted);
+  margin: 0;
+}
+
+.bcn-fictional-note {
+  border-left: 5px solid var(--bcn-gold);
+  font-size: 0.88rem;
+}
+
+.bcn-dashboard-note {
+  font-size: 0.82rem;
+  color: var(--bcn-muted);
+  margin-top: 0.6rem;
+  margin-bottom: 0;
+}
+
+/* Summary cards: slimmer, accent top border */
 .bcn-summary-card {
   background: #fff;
   border: 1px solid var(--bcn-border);
-  border-left: 5px solid var(--bcn-green-800);
+  border-top: 4px solid var(--bcn-green-800);
   border-radius: var(--bcn-radius);
   box-shadow: var(--bcn-shadow);
-  padding: 1.1rem 1.2rem;
+  padding: 0.9rem 1.1rem;
   height: 100%;
 }
 
 .bcn-summary-card.gold {
-  border-left-color: var(--bcn-gold);
+  border-top-color: var(--bcn-gold);
 }
 
 .bcn-summary-card .count {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   font-weight: 800;
   color: var(--bcn-green-900);
+  line-height: 1.1;
 }
 
 .bcn-summary-card .caption {
   color: var(--bcn-muted);
-  font-size: 0.87rem;
+  font-size: 0.84rem;
 }
 
-/* Keep wide tables usable on phones */
+/* Search + filters */
+.bcn-filter-bar {
+  background: var(--bcn-bg-soft);
+  border: 1px solid var(--bcn-border);
+  border-radius: var(--bcn-radius);
+  padding: 1.1rem 1.2rem;
+}
+
+.bcn-filter-bar .form-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.bcn-result-count {
+  font-size: 0.87rem;
+  font-weight: 700;
+  color: var(--bcn-green-800);
+}
+
+/* Records table */
 .table-responsive {
   border: 1px solid var(--bcn-border);
   border-radius: var(--bcn-radius);
   background: #fff;
 }
 
-/* ---------- 15. Print: registration summary only ----------
-   The printable sheet lives in #printArea (populated by
-   records.js just before printing). On paper, hide the entire
-   app interface and show only that sheet. */
+.bcn-table {
+  margin-bottom: 0;
+}
+
+.bcn-table thead th {
+  background: var(--bcn-green-900);
+  color: #fff;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border-bottom: 0;
+  padding: 0.7rem 0.8rem;
+}
+
+.bcn-table tbody td {
+  font-size: 0.88rem;
+  padding: 0.65rem 0.8rem;
+  vertical-align: middle;
+}
+
+.bcn-table code {
+  color: var(--bcn-green-900);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.bcn-pill {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--bcn-green-900);
+  background: var(--bcn-green-100);
+  border: 1px solid #c6dccf;
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  white-space: nowrap;
+}
+
+.bcn-pill.gold {
+  color: #6d5205;
+  background: var(--bcn-gold-soft);
+  border-color: #e3cf8f;
+}
+
+.bcn-actions {
+  white-space: nowrap;
+}
+
+.bcn-actions .btn + .btn {
+  margin-left: 0.4rem;
+}
+
+.bcn-empty,
+.bcn-empty-action {
+  text-align: center;
+  padding: 1.6rem 1rem !important;
+  color: var(--bcn-muted);
+}
+
+.bcn-empty {
+  font-weight: 600;
+  color: var(--bcn-green-900);
+}
+
+.bcn-pagination .btn:disabled {
+  opacity: 0.45;
+}
+
+/* Sample-data box */
+.bcn-demo-box {
+  background: #fff;
+  border: 1px dashed var(--bcn-gold);
+  border-radius: var(--bcn-radius);
+  padding: 1.1rem 1.2rem;
+}
+
+.bcn-demo-box h2 {
+  font-size: 1rem;
+  color: var(--bcn-green-900);
+  margin-bottom: 0.25rem;
+}
+
+.bcn-demo-box p {
+  font-size: 0.86rem;
+  color: var(--bcn-muted);
+}
+
+/* Details modal */
+.bcn-modal-header {
+  border-bottom: 3px solid var(--bcn-green-800);
+}
+
+.bcn-detail-list {
+  margin: 0 0 1rem;
+}
+
+.bcn-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--bcn-border);
+  font-size: 0.9rem;
+}
+
+.bcn-detail-row:last-child {
+  border-bottom: 0;
+}
+
+.bcn-detail-row dt {
+  color: var(--bcn-muted);
+  font-weight: 500;
+}
+
+.bcn-detail-row dd {
+  margin: 0;
+  font-weight: 650;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.bcn-disclaimer {
+  border: 1px solid var(--bcn-border);
+  background: var(--bcn-bg-soft);
+  color: var(--bcn-muted);
+  border-radius: 7px;
+  font-size: 0.8rem;
+  padding: 0.7rem 0.9rem;
+}
+
+/* ---------- 17. Print: registration summary only ---------- */
 @media print {
   body > *:not(#printArea) {
     display: none !important;
@@ -655,7 +1048,7 @@ select:focus-visible,
   }
 }
 
-/* ---------- 16. Reduced motion ---------- */
+/* ---------- 18. Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -669,218 +1062,39 @@ select:focus-visible,
   }
 }
 
-/* ---------- 17. Small-screen polish ---------- */
+/* ---------- 19. Tablet and mobile ---------- */
+@media (max-width: 991.98px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 575.98px) {
-  .bcn-hero {
+  .hero {
     padding: 2.2rem 0;
   }
 
-  .bcn-hero-actions .btn {
+  .hero-actions .btn {
     width: 100%;
   }
 
-  .bcn-cta {
-    padding: 1.3rem;
+  .service-form {
+    padding: 1rem;
   }
-}
 
-/* ---------- 18. Registration success + fictional-data note ---------- */
-.bcn-fictional-note {
-  border-left: 5px solid var(--bcn-gold);
-}
+  .form-section {
+    padding: 1rem;
+  }
 
-.bcn-success {
-  background: #fff;
-  border: 1px solid var(--bcn-border);
-  border-top: 6px solid var(--bcn-green-800);
-  border-radius: 12px;
-  box-shadow: var(--bcn-shadow-lg);
-  padding: 1.6rem;
-}
+  .form-progress {
+    padding: 0.8rem 1rem;
+    gap: 0.5rem 1.2rem;
+  }
 
-.bcn-success h2 {
-  font-size: 1.3rem;
-  color: var(--bcn-green-900);
-}
-
-.bcn-success-id {
-  display: inline-block;
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: var(--bcn-green-900);
-  background: var(--bcn-gold-soft);
-  border: 1px solid #e3cf8f;
-  border-radius: 8px;
-  padding: 0.4rem 0.9rem;
-}
-
-.bcn-check-lg {
-  width: 44px;
-  height: 44px;
-  flex-basis: 44px;
-  font-size: 1.3rem;
-}
-
-/* ---------- 19. Dashboard ---------- */
-.bcn-dashboard h1 {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 750;
-}
-
-.bcn-dashboard-note {
-  font-size: 0.82rem;
-  color: var(--bcn-muted);
-  margin-top: 0.6rem;
-  margin-bottom: 0;
-}
-
-/* Search + filters card */
-.bcn-filter-bar {
-  background: #fff;
-  border: 1px solid var(--bcn-border);
-  border-radius: var(--bcn-radius);
-  box-shadow: var(--bcn-shadow);
-  padding: 1.1rem 1.2rem;
-}
-
-.bcn-result-count {
-  font-size: 0.87rem;
-  font-weight: 700;
-  color: var(--bcn-green-800);
-}
-
-/* Records table */
-.bcn-table thead th {
-  background: var(--bcn-green-900);
-  color: #fff;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  border-bottom: 0;
-  padding: 0.75rem 0.8rem;
-}
-
-.bcn-table tbody td {
-  font-size: 0.9rem;
-  padding: 0.7rem 0.8rem;
-  vertical-align: middle;
-}
-
-.bcn-table code {
-  color: var(--bcn-green-900);
-  font-size: 0.82rem;
-  white-space: nowrap;
-}
-
-.bcn-pill {
-  display: inline-block;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--bcn-green-900);
-  background: var(--bcn-green-100);
-  border: 1px solid #c6dccf;
-  border-radius: 999px;
-  padding: 0.15rem 0.65rem;
-  white-space: nowrap;
-}
-
-.bcn-pill.gold {
-  color: #6d5205;
-  background: var(--bcn-gold-soft);
-  border-color: #e3cf8f;
-}
-
-.bcn-actions {
-  white-space: nowrap;
-}
-
-.bcn-actions .btn + .btn {
-  margin-left: 0.4rem;
-}
-
-.bcn-empty,
-.bcn-empty-action {
-  text-align: center;
-  padding: 1.6rem 1rem !important;
-  color: var(--bcn-muted);
-}
-
-.bcn-empty {
-  font-weight: 600;
-  color: var(--bcn-green-900);
-}
-
-/* Pagination row */
-.bcn-pagination .btn:disabled {
-  opacity: 0.45;
-}
-
-/* Demonstration-data box */
-.bcn-demo-box {
-  background: #fff;
-  border: 1px dashed var(--bcn-gold);
-  border-radius: var(--bcn-radius);
-  padding: 1.2rem 1.3rem;
-}
-
-.bcn-demo-box h2 {
-  font-size: 1rem;
-  color: var(--bcn-green-900);
-  margin-bottom: 0.25rem;
-}
-
-.bcn-demo-box p {
-  font-size: 0.87rem;
-  color: var(--bcn-muted);
-}
-
-/* Details modal */
-.bcn-modal-header {
-  border-bottom: 3px solid var(--bcn-green-800);
-}
-
-.bcn-detail-list {
-  margin: 0 0 1rem;
-}
-
-.bcn-detail-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px dashed var(--bcn-border);
-  font-size: 0.9rem;
-}
-
-.bcn-detail-row:last-child {
-  border-bottom: 0;
-}
-
-.bcn-detail-row dt {
-  color: var(--bcn-muted);
-  font-weight: 500;
-}
-
-.bcn-detail-row dd {
-  margin: 0;
-  font-weight: 650;
-  text-align: right;
-  overflow-wrap: anywhere;
-}
-
-.bcn-disclaimer-light {
-  border: 1px solid var(--bcn-border);
-  background: var(--bcn-bg-soft);
-  color: var(--bcn-muted);
-  border-radius: 8px;
-  font-size: 0.8rem;
-  padding: 0.7rem 0.9rem;
-}
-
-/* Dashboard small screens: compact table + full-width buttons */
-@media (max-width: 575.98px) {
   .bcn-table tbody td {
     font-size: 0.83rem;
     padding: 0.55rem 0.6rem;
@@ -892,5 +1106,9 @@ select:focus-visible,
 
   .bcn-pagination .btn {
     flex: 1;
+  }
+
+  .home-stats dl {
+    gap: 0.8rem 2rem;
   }
 }
