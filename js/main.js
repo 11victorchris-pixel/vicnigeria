@@ -48,6 +48,23 @@ function bcnSaveRecords(records) {
 }
 
 /* ------------------------------------------------------------
+   Test whether browser storage can actually be used.
+   Some browsers block localStorage (private mode, disabled
+   cookies). Every read then looks empty, so pages must warn
+   the user instead of silently showing zero records.
+------------------------------------------------------------ */
+function bcnStorageAvailable() {
+  try {
+    var probe = "__vicbirth_probe__";
+    window.localStorage.setItem(probe, "1");
+    window.localStorage.removeItem(probe);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+/* ------------------------------------------------------------
    Add one record while preserving existing ones.
    Returns true when the record was stored.
 ------------------------------------------------------------ */
@@ -373,6 +390,14 @@ function bcnInitHeroCarousel() {
     start();
   }
 
+  // Images that already failed (for example a cached 404) never
+  // fire "error" again, so mark them broken up front.
+  slides.forEach(function (slide) {
+    if (slide.complete && slide.naturalWidth === 0) {
+      slide.classList.add("carousel-slide-broken");
+    }
+  });
+
   // A failed image is removed from rotation; if it was on screen,
   // fall back to the next usable slide immediately.
   slides.forEach(function (slide, i) {
@@ -386,6 +411,12 @@ function bcnInitHeroCarousel() {
     });
   });
 
+  // If the opening slide itself is broken, move on immediately.
+  if (isBroken(index)) {
+    index = -1;
+    step(1);
+  }
+
   // Build one dot per usable slide.
   if (dotsWrap) {
     slides.forEach(function (slide, i) {
@@ -394,7 +425,12 @@ function bcnInitHeroCarousel() {
       dot.setAttribute("aria-label", "Show photo " + (i + 1));
       dot.setAttribute("aria-current", i === 0 ? "true" : "false");
       dot.addEventListener("click", function () {
-        show(i);
+        if (isBroken(i)) {
+          index = i; // step() moves forward from here to a usable slide
+          step(1);
+        } else {
+          show(i);
+        }
         restart();
       });
       dotsWrap.appendChild(dot);

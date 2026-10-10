@@ -612,6 +612,14 @@ document.addEventListener("DOMContentLoaded", function () {
     refresh(true);
   });
 
-  // First paint.
+  // First paint. When browser storage itself is blocked, every
+  // read looks empty — say so plainly instead of showing zeros.
+  if (!bcnStorageAvailable()) {
+    showPageAlert(
+      "danger",
+      "Browser storage is unavailable, so records cannot be saved or loaded on this device. " +
+        "Check private-browsing or cookie settings, then reload the page."
+    );
+  }
   refresh(true);
 });
