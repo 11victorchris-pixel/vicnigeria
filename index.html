@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="VicBirth Nigeria — Online Birth Recording System. A simpler way to record birth information, organize records, and retrieve registration details." />
+  <meta name="theme-color" content="#008751" />
   <title>VicBirth Nigeria — Online Birth Recording System</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c4f2e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='17' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23008751'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='17' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
 
   <!-- Bootstrap 5 via official CDN (only framework allowed) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
@@ -23,9 +24,9 @@
           <!-- Original wordmark: birth-record document with gold seal -->
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" role="img" aria-hidden="true">
             <path d="M6 2.5h8L19 7.5V21.5H6V2.5Z" fill="#ffffff"/>
-            <path d="M14 2.5v5h5" fill="#0c4f2e"/>
-            <path d="M9 11.5h6M9 14.5h6" stroke="#0c4f2e" stroke-width="1.6" stroke-linecap="round"/>
-            <circle cx="16.6" cy="17.6" r="3.6" fill="#C9A227"/>
+            <path d="M14 2.5v5h5" fill="#006B40"/>
+            <path d="M9 11.5h6M9 14.5h6" stroke="#006B40" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="16.6" cy="17.6" r="3.6" fill="#D6A62C"/>
             <path d="m15.2 17.6 1 1 1.9-2.1" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </span>
@@ -63,20 +64,61 @@
     <!-- ============ Hero ============ -->
     <section class="hero">
       <div class="container">
-        <div class="row align-items-center g-4">
+        <div class="row align-items-center g-5">
           <div class="col-lg-6">
             <p class="hero-kicker">Digital Birth Recording, Made Simpler.</p>
-            <h1>Every Birth Matters. Every Record Counts.</h1>
+            <h1>Every Birth Matters. <span class="text-brand">Every Record Counts.</span></h1>
             <p class="hero-sub">A simpler way to record birth information, organize records, and retrieve registration details.</p>
+
             <div class="hero-actions">
               <a class="btn btn-primary btn-lg" href="register.html">Register a Birth</a>
-              <a class="btn btn-outline-light btn-lg" href="records.html">View Records</a>
+              <a class="btn btn-outline-primary btn-lg" href="records.html">View Records</a>
             </div>
+
+            <!-- Quick statistics: live counts from records saved in this browser -->
+            <div class="stats-row" aria-labelledby="stats-title">
+              <h2 class="visually-hidden" id="stats-title">Records on this device</h2>
+              <div class="stat-card">
+                <h3 id="stat-total">0</h3>
+                <p>Total records</p>
+              </div>
+              <div class="stat-card">
+                <h3 id="stat-today">0</h3>
+                <p>Added today</p>
+              </div>
+              <div class="stat-card">
+                <h3 id="stat-male">0</h3>
+                <p>Male</p>
+              </div>
+              <div class="stat-card">
+                <h3 id="stat-female">0</h3>
+                <p>Female</p>
+              </div>
+            </div>
+            <p class="stats-note">Figures reflect <span id="stat-states">0</span> state(s) saved in this browser only &mdash; not national statistics. <a href="records.html">Open the dashboard</a></p>
           </div>
+
           <div class="col-lg-6">
             <figure class="hero-photo">
-              <img src="assets/images/hero-nigerian-mother.jpg" alt="A Nigerian mother tenderly holding her newborn baby, showcasing love and care" width="1200" height="900" fetchpriority="high" />
-              <figcaption>Photo: mk_photoz / Pexels</figcaption>
+              <div class="hero-carousel" id="heroCarousel" role="group" aria-roledescription="carousel" aria-label="Nigerian mothers, babies, and families">
+                <div class="carousel-slides">
+                  <img class="carousel-slide active" src="assets/images/hero-nigerian-mother.jpg" alt="A Nigerian mother tenderly holding her newborn baby, showcasing love and care" width="1200" height="900" fetchpriority="high" />
+                  <img class="carousel-slide" src="assets/images/hero-carousel-1.jpg" alt="A Nigerian mother holding her newborn baby" width="1280" height="960" decoding="async" />
+                  <img class="carousel-slide" src="assets/images/hero-carousel-2.jpg" alt="A Nigerian mother in traditional attire holding her newborn baby" width="1280" height="960" decoding="async" />
+                  <img class="carousel-slide" src="assets/images/hero-carousel-3.jpg" alt="A traditional Nigerian mother cradling her newborn baby" width="1280" height="960" decoding="async" />
+                  <img class="carousel-slide" src="assets/images/hero-carousel-4.jpg" alt="A joyful Nigerian family with their newborn child" width="1280" height="960" decoding="async" />
+                  <img class="carousel-slide" src="assets/images/hero-carousel-5.jpg" alt="A portrait of a Nigerian mother and her baby" width="1280" height="960" decoding="async" />
+                </div>
+                <button type="button" class="carousel-btn prev" data-carousel="prev" aria-label="Show previous photo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button type="button" class="carousel-btn next" data-carousel="next" aria-label="Show next photo">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="carousel-dots" data-carousel="dots" aria-label="Choose a photo"></div>
+                <span class="floating-badge">A unique reference is issued for every saved record</span>
+              </div>
+              <figcaption>Photos: mk_photoz and Ab Pixels / Pexels</figcaption>
             </figure>
           </div>
         </div>
@@ -94,45 +136,53 @@
       </div>
     </div>
 
-    <!-- ============ Benefits ============ -->
+    <!-- ============ Feature cards ============ -->
     <section class="page-section" aria-labelledby="benefits-title">
       <div class="container">
-        <h2 class="section-title" id="benefits-title">Why record births digitally?</h2>
-        <div class="row g-3 mt-1">
+        <div class="section-heading text-center text-lg-start">
+          <span class="section-kicker">What VicBirth offers</span>
+          <h2 id="benefits-title">Why record births digitally?</h2>
+          <p>Everything needed to register a birth, keep the record organized, and find it again quickly.</p>
+        </div>
+        <div class="row g-4">
           <div class="col-md-6 col-lg-3">
-            <div class="benefit">
-              <span class="benefit-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6V3Z" stroke="#0c4f2e" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h7M9 16h5" stroke="#0c4f2e" stroke-width="2" stroke-linecap="round"/></svg>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6V3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h7M9 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               </span>
-              <h3>Simple registration</h3>
-              <p>A short guided form captures each birth in minutes.</p>
+              <h3>Simple birth registration</h3>
+              <p>A short guided form captures each birth in minutes, with checks that run as you type.</p>
+              <a href="register.html">Register a birth &rarr;</a>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
-            <div class="benefit">
-              <span class="benefit-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#0c4f2e" stroke-width="2"/><path d="M7 9h10M7 13h10M7 17h6" stroke="#0c4f2e" stroke-width="2" stroke-linecap="round"/></svg>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M7 9h10M7 13h10M7 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               </span>
               <h3>Organized digital records</h3>
-              <p>Every record follows the same clear format.</p>
+              <p>Every record follows the same clear format, stored safely in your browser.</p>
+              <a href="records.html">View records &rarr;</a>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
-            <div class="benefit">
-              <span class="benefit-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#0c4f2e" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="#0c4f2e" stroke-width="2" stroke-linecap="round"/></svg>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               </span>
-              <h3>Faster record retrieval</h3>
-              <p>Find any record by name or reference in seconds.</p>
+              <h3>Fast record retrieval</h3>
+              <p>Find any record by name or registration reference in seconds, then filter by state, sex, or date.</p>
+              <a href="records.html">Search records &rarr;</a>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
-            <div class="benefit">
-              <span class="benefit-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v13H4V7Z" stroke="#0c4f2e" stroke-width="2" stroke-linejoin="round"/><path d="M4 7l2-3h12l2 3M10 12h4" stroke="#0c4f2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v13H4V7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 7l2-3h12l2 3M10 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
-              <h3>Convenient record management</h3>
-              <p>View, export, and print records when needed.</p>
+              <h3>View, print, and export</h3>
+              <p>Open a record summary, print it, or export the full list as a CSV file when needed.</p>
+              <a href="records.html">Open the dashboard &rarr;</a>
             </div>
           </div>
         </div>
@@ -140,17 +190,22 @@
     </section>
 
     <!-- ============ Family band ============ -->
-    <section class="page-section photo-band" aria-labelledby="family-title">
+    <section class="page-section band" aria-labelledby="family-title">
       <div class="container">
-        <div class="row align-items-center g-4">
+        <div class="row align-items-center g-5">
           <div class="col-lg-6">
             <figure class="band-photo">
-              <img src="assets/images/nigerian-mother-traditional.jpg" alt="A Nigerian mother in traditional attire cradling her newborn baby indoors" width="1200" height="750" loading="lazy" />
+              <div class="photo-frame">
+                <img src="assets/images/nigerian-mother-traditional.jpg" alt="A Nigerian mother in traditional attire cradling her newborn baby indoors" width="1200" height="750" loading="lazy" />
+              </div>
               <figcaption>Photo: Ab Pixels / Pexels</figcaption>
             </figure>
           </div>
           <div class="col-lg-6">
-            <h2 class="section-title" id="family-title">Made for parents, guardians, and health workers</h2>
+            <div class="section-heading">
+              <span class="section-kicker">Who it is for</span>
+              <h2 id="family-title">Made for parents, guardians, and health workers</h2>
+            </div>
             <ul class="tick-list">
               <li>Record a birth from home or a health facility.</li>
               <li>Keep every detail organized in one place.</li>
@@ -165,7 +220,11 @@
     <!-- ============ How it works ============ -->
     <section class="page-section" aria-labelledby="how-title">
       <div class="container">
-        <h2 class="section-title" id="how-title">How it works</h2>
+        <div class="section-heading text-center text-lg-start">
+          <span class="section-kicker">Three simple steps</span>
+          <h2 id="how-title">How it works</h2>
+          <p>From birth details to a saved, searchable record in a single sitting.</p>
+        </div>
         <ol class="steps">
           <li>
             <span class="step-number" aria-hidden="true">1</span>
@@ -177,32 +236,34 @@
           <li>
             <span class="step-number" aria-hidden="true">2</span>
             <div>
-              <h3>Submit the registration form</h3>
+              <h3>Validate and save the record</h3>
               <p>Checks run instantly, then the record is saved with a unique reference.</p>
             </div>
           </li>
           <li>
             <span class="step-number" aria-hidden="true">3</span>
             <div>
-              <h3>Find and manage the saved record</h3>
-              <p>Search the dashboard, view details, export, or print.</p>
+              <h3>Search, view, and manage</h3>
+              <p>Search the dashboard, view details, export, or print the saved record.</p>
             </div>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- ============ Records on this device (live, de-emphasized) ============ -->
-    <section class="home-stats" aria-labelledby="stats-title">
+    <!-- ============ Closing call to action ============ -->
+    <section class="page-section" aria-labelledby="cta-title">
       <div class="container">
-        <h2 id="stats-title">Records on this device</h2>
-        <dl>
-          <div><dt>Total records</dt><dd id="stat-total">0</dd></div>
-          <div><dt>Added today</dt><dd id="stat-today">0</dd></div>
-          <div><dt>Male</dt><dd id="stat-male">0</dd></div>
-          <div><dt>Female</dt><dd id="stat-female">0</dd></div>
-        </dl>
-        <p>Figures reflect <span id="stat-states">0</span> state(s) in this browser only &mdash; not national statistics. <a href="records.html">Open the dashboard</a></p>
+        <div class="cta-box">
+          <div>
+            <h2 id="cta-title">Ready to record a birth?</h2>
+            <p>Register a birth now, or open the dashboard to review the records saved on this device.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-light btn-lg btn-on-dark" href="register.html">Register a Birth</a>
+            <a class="btn btn-outline-light btn-lg btn-on-dark" href="records.html">View Records</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>

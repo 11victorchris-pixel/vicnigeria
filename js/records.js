@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
       viewBtn.setAttribute("data-id", record.id);
       var deleteBtn = document.createElement("button");
       deleteBtn.type = "button";
-      deleteBtn.className = "btn btn-outline-danger btn-sm";
+      deleteBtn.className = "btn btn-soft-danger btn-sm";
       deleteBtn.textContent = "Delete";
       deleteBtn.setAttribute("data-action", "delete");
       deleteBtn.setAttribute("data-id", record.id);

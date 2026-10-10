@@ -269,9 +269,180 @@ function bcnRenderHomeStats() {
 }
 
 /* ------------------------------------------------------------
-   Run on every page: seed once, then render home stats if needed.
+   Hero photo carousel (home page only).
+   Crossfades between the local hero photos every 5.5 seconds.
+   - Pauses while the pointer or keyboard focus is inside it.
+   - Skips images that fail to load; falls back to slide one.
+   - Does not auto-rotate when reduced motion is preferred.
+   The first slide carries class "active" in the HTML, so the
+   hero still shows a photo when JavaScript is unavailable.
+------------------------------------------------------------ */
+function bcnInitHeroCarousel() {
+  var root = document.getElementById("heroCarousel");
+  if (!root) {
+    return; // not on the home page
+  }
+
+  var slides = Array.prototype.slice.call(root.querySelectorAll(".carousel-slide"));
+  if (slides.length < 2) {
+    return; // nothing to rotate
+  }
+
+  var dotsWrap = root.querySelector('[data-carousel="dots"]');
+  var index = 0;
+  var timer = null;
+  var INTERVAL = 5500;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function isBroken(i) {
+    return slides[i].classList.contains("carousel-slide-broken");
+  }
+
+  function usableCount() {
+    var count = 0;
+    for (var i = 0; i < slides.length; i++) {
+      if (!isBroken(i)) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  // Walk forwards (dir = 1) or backwards (dir = -1) to the next usable slide.
+  function step(dir) {
+    var i = index;
+    var tries = 0;
+    do {
+      i = (i + dir + slides.length) % slides.length;
+      tries += 1;
+    } while (isBroken(i) && tries < slides.length);
+    if (!isBroken(i)) {
+      show(i);
+    }
+  }
+
+  function show(i) {
+    if (i === index) {
+      return;
+    }
+    if (index >= 0 && slides[index]) {
+      slides[index].classList.remove("active");
+    }
+    index = i;
+    slides[index].classList.add("active");
+    updateDots();
+    preload(index + 1);
+  }
+
+  // Decode the next image ahead of time so the crossfade never flashes.
+  function preload(i) {
+    var next = slides[((i % slides.length) + slides.length) % slides.length];
+    if (next && !isBroken(slides.indexOf(next)) && next.decode) {
+      next.decode().catch(function () {});
+    }
+  }
+
+  function updateDots() {
+    if (!dotsWrap) {
+      return;
+    }
+    var dots = dotsWrap.querySelectorAll("button");
+    Array.prototype.forEach.call(dots, function (dot, i) {
+      dot.setAttribute("aria-current", i === index ? "true" : "false");
+    });
+  }
+
+  function start() {
+    if (timer || reduceMotion.matches || usableCount() < 2) {
+      return;
+    }
+    timer = window.setInterval(function () {
+      step(1);
+    }, INTERVAL);
+  }
+
+  function stop() {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function restart() {
+    stop();
+    start();
+  }
+
+  // A failed image is removed from rotation; if it was on screen,
+  // fall back to the next usable slide immediately.
+  slides.forEach(function (slide, i) {
+    slide.addEventListener("error", function () {
+      slide.classList.add("carousel-slide-broken");
+      if (slide.classList.contains("active")) {
+        slides[index].classList.remove("active");
+        index = -1; // force show() to switch away
+        step(1);
+      }
+    });
+  });
+
+  // Build one dot per usable slide.
+  if (dotsWrap) {
+    slides.forEach(function (slide, i) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Show photo " + (i + 1));
+      dot.setAttribute("aria-current", i === 0 ? "true" : "false");
+      dot.addEventListener("click", function () {
+        show(i);
+        restart();
+      });
+      dotsWrap.appendChild(dot);
+    });
+  }
+
+  var prevBtn = root.querySelector('[data-carousel="prev"]');
+  var nextBtn = root.querySelector('[data-carousel="next"]');
+  if (prevBtn) {
+    prevBtn.addEventListener("click", function () {
+      step(-1);
+      restart();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", function () {
+      step(1);
+      restart();
+    });
+  }
+
+  // Pause on hover and on keyboard focus; resume when both leave.
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+  root.addEventListener("focusin", stop);
+  root.addEventListener("focusout", start);
+
+  // Honour reduced-motion changes made while the page is open.
+  if (reduceMotion.addEventListener) {
+    reduceMotion.addEventListener("change", function () {
+      if (reduceMotion.matches) {
+        stop();
+      } else {
+        start();
+      }
+    });
+  }
+
+  preload(1);
+  start();
+}
+
+/* ------------------------------------------------------------
+   Run on every page: seed once, render home stats if needed,
+   and start the hero carousel when it is present.
 ------------------------------------------------------------ */
 document.addEventListener("DOMContentLoaded", function () {
   bcnSeedDemoRecordsOnce();
   bcnRenderHomeStats();
+  bcnInitHeroCarousel();
 });
